@@ -9,7 +9,7 @@ import {
 import { HourRateService } from './hourrate.service';
 import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { HourRateFindCondition } from '../misc/findcondition';
-import { HourRate } from '../entities/hourrate.entity';
+import { HourRate } from '../appentities/hourrate.entity';
 @Controller('/api/hourrate')
 export class HourRateController {
   constructor(protected service: HourRateService) {}

@@ -1,11 +1,12 @@
-import { Connection } from 'typeorm';
-import { StockTaking } from '../entities/stocktaking.entity';
+import { Connection, Repository } from 'typeorm';
+import { StockTaking } from '../appentities/stocktaking.entity';
 
 export const StockTakingProviders = [
   {
     provide: 'StockTakingRepositoryToken',
-    useFactory: (connection: Connection) =>
+    inject: ['APPCONNECTION'],
+    useFactory: (connection: Connection):Repository<StockTaking> =>
       connection.getRepository(StockTaking),
-    inject: ['MSSQLCONNECTION'],
+
   },
 ];

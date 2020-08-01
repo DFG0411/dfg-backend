@@ -1,5 +1,5 @@
 import { GraphQLError } from 'graphql/error/GraphQLError';
-import { OptimisticLockError } from 'sequelize';
+// import { OptimisticLockError } from 'sequelize';
 import { BadRequestException, ForbiddenException } from '@nestjs/common';
 import { MessageCodeError } from '../../common/error/MessageCodeError';
 
@@ -32,7 +32,7 @@ export const graphqlError = (error: GraphQLError) => {
     return error?.extensions?.exception;
   }
   /** OptimisticLockError */
-  if (error.originalError instanceof OptimisticLockError) {
-    return new OptimisticLockError({ message: 'OptimisticLockError' });
-  }
+  // if (error.originalError instanceof OptimisticLockError) {
+  //   return new OptimisticLockError({ message: 'OptimisticLockError' });
+  // }
 };

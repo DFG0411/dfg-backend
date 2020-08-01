@@ -6,13 +6,13 @@ export class History {
   @PrimaryColumn({ type: 'int', name: 'isodid' })
   isodid: number;
 
-  @Column({ type: 'nvarchar', length: 14, name: 'jno' })
+  @Column()
   jno: string;
-  @Column({ type: 'nvarchar', length: 14, name: 'mno' })
+  @Column()
   mno: string;
-  @Column({ type: 'nvarchar', length: 60, name: 'ccuscode' })
+  @Column()
   cuscode: string;
-  @Column({ type: 'nvarchar', length: 255, name: 'ccusabbname' })
+  @Column()
   cusname: string;
   @OneToOne(type => Inventory)
   @JoinColumn({ name: 'cinvcode' })
@@ -21,10 +21,10 @@ export class History {
   qty: number;
   @Column({ type: 'float' })
   sounitprice: number;
-  @Column({ type: 'smalldatetime', name: 'ddate' })
-  ddate: number;
-  @Column({ type: 'smalldatetime', name: 'mdate' })
-  mdate: number;
+  @Column()
+  ddate: Date;
+  @Column()
+  mdate: Date;
   @Column({ type: 'int', name: 'moid' })
   moid: number;
 }

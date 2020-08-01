@@ -11,7 +11,7 @@ import {
 import { StockTakingService } from './stocktaking.service';
 import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { StockTakingFindCondition } from '../misc/findcondition';
-import { StockTaking } from 'src/entities/stocktaking.entity';
+import { StockTaking } from 'src/appentities/stocktaking.entity';
 import { DeepPartial } from 'typeorm';
 @Controller('/api/stocktaking')
 export class StockTakingController {

@@ -1,6 +1,6 @@
 import { Get, Query, Controller } from '@nestjs/common';
 import { InventoryService } from './inventory.service';
-import { Inventory } from '../entities/inventory.entity';
+import { Inventory } from '../appentities/inventory.entity';
 import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { SearchFindCondition } from '../misc/findcondition';
 @Controller('/api/inventory')

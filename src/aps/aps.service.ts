@@ -7,7 +7,7 @@ import {
   StockTakingFindCondition,
 } from '../misc/findcondition';
 // import { BomItem } from 'entities/bomitem.entity';
-import { StockTaking } from '../entities/stocktaking.entity';
+import { StockTaking } from '../appentities/stocktaking.entity';
 
 @Injectable()
 export class ApsService {

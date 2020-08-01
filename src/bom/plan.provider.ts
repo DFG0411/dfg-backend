@@ -1,10 +1,10 @@
-import { Connection } from 'typeorm';
-import { BomItem } from '../entities/bomitem.entity';
+import { Connection, Repository } from 'typeorm';
+import { BomItem } from '../appentities/bomitem.entity';
 
 export const BomPlanProviders = [
   {
     provide: 'BomPlanRepositoryToken',
-    useFactory: (connection: Connection) => connection.getRepository(BomItem),
-    inject: ['MSSQLCONNECTION'],
+    useFactory: ( connection: Connection):Repository<BomItem> => connection.getRepository(BomItem),
+    inject: ['APPCONNECTION'],
   },
 ];

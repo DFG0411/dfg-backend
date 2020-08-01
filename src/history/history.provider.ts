@@ -1,10 +1,10 @@
 import { Connection } from 'typeorm';
-import { History } from '../entities/history.entity';
+import { History } from '../appentities/history.entity';
 
 export const HistoryProviders = [
   {
     provide: 'HistoryRepositoryToken',
     useFactory: (connection: Connection) => connection.getRepository(History),
-    inject: ['MSSQLCONNECTION'],
+    inject: ['APPCONNECTION'],
   },
 ];

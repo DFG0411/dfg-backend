@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Repository, FindOperator } from 'typeorm';
-import { Inventory } from '../entities/inventory.entity';
+import { Inventory } from '../appentities/inventory.entity';
 import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
 import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { SearchFindCondition } from '../misc/findcondition';

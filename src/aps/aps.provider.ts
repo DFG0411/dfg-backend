@@ -6,13 +6,13 @@
  * @LastEditors: Please set LastEditors
  */
 import { Connection } from 'typeorm';
-import { StockTaking } from '../entities/stocktaking.entity';
+import { StockTaking } from '../appentities/stocktaking.entity';
 
 export const StockTakingProviders = [
   {
     provide: 'ApsRepositoryToken',
     useFactory: (connection: Connection) =>
       connection.getRepository(StockTaking),
-    inject: ['MSSQLCONNECTION'],
+    inject: ['APPCONNECTION'],
   },
 ];

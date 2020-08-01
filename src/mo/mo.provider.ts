@@ -1,10 +1,11 @@
-import { Connection } from 'typeorm';
-import { MoEntity } from '../entities/mo.entity';
+import { Connection, Repository } from 'typeorm';
+import { MoEntity } from '../appentities/mo.entity';
 
 export const MoProviders = [
   {
     provide: 'MoRepositoryToken',
-    useFactory: (connection: Connection) => connection.getRepository(MoEntity),
-    inject: ['MSSQLCONNECTION'],
+    inject: ['APPCONNECTION'],
+    useFactory: (connection: Connection):Repository<MoEntity> => connection.getRepository(MoEntity),
+
   },
 ];

@@ -1,8 +1,23 @@
-import { Column, BaseEntity, Entity, PrimaryColumn } from 'typeorm';
-// import {ApiModelProperty} from '@nestjs/swagger';
+import {Column, BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, VersionColumn, Entity} from 'typeorm';
+import {ApiProperty} from '@nestjs/swagger';
 
 @Entity()
 export class SupperEntity extends BaseEntity {
-  @PrimaryColumn({ type: 'int' })
-  id: number;
+
+	@ApiProperty()
+	@Column()
+	@PrimaryGeneratedColumn()
+	public id: number;
+
+	@ApiProperty()
+	@VersionColumn()
+	public version: number;
+
+	@ApiProperty()
+	@CreateDateColumn()
+	public cratedAt: Date;
+
+	@ApiProperty()
+	@UpdateDateColumn()
+	public updatedAt: Date;
 }

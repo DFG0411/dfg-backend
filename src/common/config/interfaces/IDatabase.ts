@@ -1,4 +1,4 @@
-import { Dialect } from 'sequelize/types';
+// import { Dialect } from 'sequelize/types';
 
 export interface IDatabaseConfigAttributes {
   username: string;
@@ -6,7 +6,7 @@ export interface IDatabaseConfigAttributes {
   database: string;
   host: string;
   port: number;
-  dialect: Dialect;
+  dialect: string;
 }
 
 export interface IDatabaseConfig {

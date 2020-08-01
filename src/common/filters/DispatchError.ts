@@ -1,7 +1,8 @@
 import { AuthenticationError } from 'apollo-server-core';
 import { Response } from 'express';
 import { JsonWebTokenError } from 'jsonwebtoken';
-import { DatabaseError, OptimisticLockError } from 'sequelize';
+// import { DatabaseError, OptimisticLockError } from 'sequelize';
+// import { } from 'typeorm';
 import { ArgumentsHost, BadRequestException, Catch, HttpException } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { MessageCodeError } from '../error';
@@ -38,12 +39,12 @@ export class DispatchError extends BaseExceptionFilter {
           return exception;
         }
 
-      case exception instanceof DatabaseError:
-        if (process.env.NODE_ENV === 'develop') {
-          return new DatabaseError(exception.parent);
-        } else {
-          throw new Error('prod:DatabaseError');
-        }
+      // case exception instanceof DatabaseError:
+      //   if (process.env.NODE_ENV === 'develop') {
+      //     return new DatabaseError(exception.parent);
+      //   } else {
+      //     throw new Error('prod:DatabaseError');
+      //   }
 
       case exception instanceof JsonWebTokenError:
         return new JsonWebTokenError('JsonWebTokenError');
@@ -51,8 +52,8 @@ export class DispatchError extends BaseExceptionFilter {
       case exception instanceof AuthenticationError:
         return new AuthenticationError('AuthenticationError');
 
-      case exception instanceof OptimisticLockError:
-        return new OptimisticLockError({});
+      // case exception instanceof OptimisticLockError:
+      //   return new OptimisticLockError({});
 
       case exception instanceof HttpException:
         return exceptionWrapper(response, exception);

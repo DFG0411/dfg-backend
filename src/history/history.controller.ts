@@ -1,6 +1,6 @@
 import { Get, Query, Controller } from '@nestjs/common';
 import { HistoryService } from './history.service';
-import { History } from '../entities/history.entity';
+import { History } from '../appentities/history.entity';
 // import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { SearchFindCondition } from '../misc/findcondition';
 @Controller('/api/history')

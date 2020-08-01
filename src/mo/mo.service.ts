@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { MoEntity } from '../entities/mo.entity';
+import { MoEntity } from '../appentities/mo.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

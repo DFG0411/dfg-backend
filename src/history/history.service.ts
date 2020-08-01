@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Repository, FindOperator } from 'typeorm';
-import { History } from '../entities/history.entity';
+import { History } from '../appentities/history.entity';
 import { FindOneOptions } from 'typeorm/find-options/FindOneOptions';
 import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { SearchFindCondition } from '../misc/findcondition';

@@ -1,0 +1,32 @@
+[
+  { "type": "Query", "methodName": "getUsers", "name": "getUsers" },
+  { "type": "Query", "methodName": "user", "name": "user" },
+  { "type": "Mutation", "methodName": "updateUser", "name": "updateUser" },
+  { "type": "Mutation", "methodName": "patchUser", "name": "patchUser" },
+  { "type": "Mutation", "methodName": "deleteUser", "name": "deleteUser" },
+  { "type": "Mutation", "methodName": "create", "name": "create" },
+  {
+    "type": "Subscription",
+    "methodName": "userCreated",
+    "name": "userCreated",
+    "callback": {}
+  },
+  { "type": "Query", "methodName": "userRole", "name": "userRole" },
+  { "type": "Query", "methodName": "userRoleList", "name": "userRoleList" },
+  { "type": "Query", "methodName": "userRoles", "name": "userRoles" },
+  {
+    "type": "Mutation",
+    "methodName": "userRoleCreate",
+    "name": "userRoleCreate"
+  },
+  {
+    "type": "Mutation",
+    "methodName": "userRoleUpdate",
+    "name": "userRoleUpdate"
+  },
+  {
+    "type": "Mutation",
+    "methodName": "userRoleDelete",
+    "name": "userRoleDelete"
+  }
+]

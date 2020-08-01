@@ -1,0 +1,52 @@
+type Query {
+  getUsers: [User]
+  user(id: number!): User
+}
+
+type Mutation {
+  createUser(data: UserInput): User
+  updateUser(id: number, data: UserInput): User
+  patchUser(id: number, data: UserInput): User
+  deleteUser(id: number, data: UserInput): User
+  login(data: LoginUser): AuthPayload
+  signup(data: UserInput): AuthPayload
+  changePassword(data: ResetPw): AuthPayload
+}
+scalar DateTime
+
+type Subscription {
+  userCreated: User
+}
+
+type User {
+  id: number
+  name: String
+  birthed: DateTime
+  title: String
+  gender: String
+  email: String
+  roles: [String]
+  password: String
+}
+
+input UserInput {
+  name: String!
+  birthed: DateTime
+  title: String
+  gender: String!
+  email: String
+  roles: [String]
+}
+input LoginUser {
+  name: String
+  password: String
+}
+input ResetPw {
+  name: String
+  email: String
+  password: String
+  newPassword: String
+}
+type AuthPayload {
+  token: String
+}

@@ -5,24 +5,24 @@ import { RdsIn } from './rdsin.entity';
 
 @Entity('dfg_na_inventory')
 export class Inventory {
-  @PrimaryColumn({ type: 'nvarchar', name: 'cinvcode' })
+  @PrimaryColumn()
   cinvcode: string;
 
-  @Column({ type: 'nvarchar', length: 14, name: 'cinvccode' })
+  @Column()
   cinvccode: string;
-  @Column({ type: 'nvarchar', length: 60, name: 'cinvstd' })
+  @Column()
   cinvstd: string;
-  @Column({ type: 'nvarchar', length: 255, name: 'cinvname' })
+  @Column()
   cinvname: string;
-  @Column({ type: 'nvarchar', length: 60, name: 'cinvaddcode' })
+  @Column()
   cinvaddcode: string;
-  @Column({ type: 'nvarchar', length: 255, name: 'cinvcname' })
+  @Column()
   cinvcname: string;
-  @Column({ type: 'int', name: 'partid' })
+  @Column()
   partid: number;
-  @Column({ type: 'float', name: 'unitcost' })
+  @Column()
   unitcost: number;
-  @Column({ type: 'bit', name: 'isbuying' })
+  @Column()
   isbuying: number;
   @OneToMany(type => RdsIn, rdsin => rdsin.inv)
   @JoinColumn({ name: 'cinvcode', referencedColumnName: 'cinvcode' })

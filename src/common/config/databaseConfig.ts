@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import { resolve } from 'path';
-import { Dialect } from 'sequelize/types';
+// import { Dialect } from 'sequelize/types';
 import { IDatabaseConfig } from './interfaces/IDatabase';
 
 console.log(
@@ -40,7 +40,7 @@ export const databaseConfig: IDatabaseConfig = {
     database: POSTGRES_DB || '',
     host: DB_HOST || '127.0.0.1',
     port: Number(DB_PORT) || 5432,
-    dialect: DB_DIALECT as Dialect,
+    dialect: DB_DIALECT ,
   },
   production: {
     username: POSTGRES_USER || '',
@@ -48,7 +48,7 @@ export const databaseConfig: IDatabaseConfig = {
     database: POSTGRES_DB || '',
     host: DB_HOST || '127.0.0.1',
     port: Number(DB_PORT) || 5432,
-    dialect: DB_DIALECT as Dialect,
+    dialect: DB_DIALECT,
   },
   test: {
     username: POSTGRES_USER || '',
@@ -56,6 +56,6 @@ export const databaseConfig: IDatabaseConfig = {
     database: POSTGRES_DB || '',
     host: DB_HOST || '127.0.0.1',
     port: Number(DB_PORT) || 5432,
-    dialect: DB_DIALECT as Dialect,
+    dialect: DB_DIALECT ,
   },
 };

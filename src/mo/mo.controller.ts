@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { SearchFindCondition } from '../misc/findcondition';
-import { MoEntity } from '../entities/mo.entity';
+import { MoEntity } from '../appentities/mo.entity';
 import { MoService } from './mo.service';
 
 @Controller('/api/mo')
