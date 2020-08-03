@@ -1,0 +1,99 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  updateUser(data: UserDto!, id: Float!): UserEntity!
+  patchUser(data: UserDto!, id: Float!): UserEntity!
+  deleteUser(id: Float!): Float!
+  create(data: UserDto!): UserEntity!
+  userRoleCreate(data: UserRoleCreateInputDto!): UserRoleEntity!
+  userRoleUpdate(data: UserRoleUpdateInputDto!): UserRoleEntity!
+  userRoleDelete(data: UserRoleDeleteInputDto!): Int!
+}
+
+type Query {
+  getUsers: [UserEntity!]!
+  user(id: Float!): UserEntity!
+
+  """user role"""
+  userRole(id: Int!): UserRoleEntity
+
+  """filtered user role list"""
+  userRoleList(textFilter: String, paging: Int!, page: Int!): [UserRoleEntity!]
+
+  """find roles by names"""
+  userRoles(userRoleNames: [String!]): [UserRoleEntity!]
+}
+
+type Subscription {
+  userCreated: UserEntity!
+}
+
+input UserDto {
+  firstName: String
+  lastName: String
+  displayName: String
+  name: String!
+  email: String
+  phone: String
+  title: String
+  gender: String
+  password: String = "man"
+  birthed: DateTime
+  roles: [UserRoleDto!]!
+}
+
+type UserEntity {
+  id: Float!
+  version: Float!
+  cratedAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  email: String!
+  birthed: DateTime!
+  firstName: String!
+  lastName: String!
+  title: String!
+  gender: String!
+  phone: String!
+  password: String!
+  roles: [UserRoleEntity!]!
+}
+
+input UserRoleCreateInputDto {
+  name: String!
+  description: String
+}
+
+input UserRoleDeleteInputDto {
+  id: Int!
+  version: Int!
+}
+
+input UserRoleDto {
+  name: String!
+  description: String
+}
+
+type UserRoleEntity {
+  id: Float!
+  version: Float!
+  cratedAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  description: String!
+  users: UserEntity!
+}
+
+input UserRoleUpdateInputDto {
+  id: Int!
+  userRoleName: String
+  userRoleDescription: String
+  version: Int!
+}

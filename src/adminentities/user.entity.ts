@@ -4,8 +4,8 @@ import {
   IsString,
   IsDate,
   MinLength,
-  // Validate,
   IsOptional,
+  IsNumber,
 } from 'class-validator';
 import {
   Entity,
@@ -20,67 +20,78 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { SupperEntity } from '../base';
 import { hashSync } from 'bcryptjs';
 import { UserRoleEntity } from './user-role.entity';
-// import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
+
+@ObjectType()
 @Entity({ name: 'user' })
 export class UserEntity extends SupperEntity {
   @ApiProperty()
   @IsString()
   @Column()
- 
+  @Field()
   name: string;
 
   @ApiProperty()
   @IsEmail()
   @Column({ unique: true })
- 
+  @Field()
   email: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsDate()
- 
   @Column({ nullable: true })
+  @Field()
   birthed?: Date;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   @Column({ nullable: true })
- 
+  @Field()
   firstName: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @Column({ nullable: true })
- 
+  @Field()
   lastName: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   @Column({ nullable: true })
- 
+  @Field()
   title?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   @Column({ nullable: true, length: 5, default: 'man' })
- 
+  @Field()
   gender: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @IsNumber()
+  @Column({ nullable: true})
+  @Field()
+  phone: string;
 
   @ApiProperty()
   @MinLength(7)
   @Column()
- 
+  @Field()
   public password: string;
 
   @ApiProperty()
   @IsArray()
-  @ManyToMany((type) => UserRoleEntity, (role) => role.users, {
+  @ManyToMany(() => UserRoleEntity, (role) => role.users, {
     cascade: true,
   })
+  @Field(()=>[UserRoleEntity])
   @JoinTable()
   // @Field(() => [UserRoleEntity])
   roles: UserRoleEntity[];

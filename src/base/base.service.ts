@@ -1,4 +1,4 @@
-import { UnprocessableEntityException } from '@nestjs/common';
+import { UnprocessableEntityException, BadRequestException } from '@nestjs/common';
 import { BaseEntity, DeleteResult, Repository, DeepPartial,} from 'typeorm';
 import { validate } from 'class-validator';
 // import {Config} from '../../config/config';
@@ -52,9 +52,14 @@ export class BaseService<T extends BaseEntity> {
 		return entity.save();
 	}
 
-	public async delete(id: number): Promise<DeleteResult> {
-		return this.repository.delete(id);
-	}
+	public async delete(id: number): Promise<number> {
+		try {
+			// const { id, version } = data;
+			await this.repository.delete(id);
+			return id
+		  } catch (error) {
+			throw new UnprocessableEntityException(`Can't delete the record.${this.repository.metadata.name}.id:${id}!`);
+		  }	}
 
 
 	private async validate(entity: T) {

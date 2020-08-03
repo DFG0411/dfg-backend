@@ -12,6 +12,7 @@ import {UserEntity} from '../adminentities/user.entity';
 import { UserLoginDto } from '../user/dto/user.login.dto';
 import {  compareSync } from 'bcryptjs';
 import { ResetPasswordDto } from 'src/user/dto/user.resetpw.dto';
+import { DeepPartial } from 'typeorm';
 
 @Injectable()
 export class AuthService {
@@ -36,7 +37,7 @@ export class AuthService {
     return this.jwtService.sign(jwtPayload);
   }
 
-  async signUp(user: UserEntity): Promise<string> {
+  async signUp(user: DeepPartial <UserEntity>): Promise<string> {
     // try {
       // console.log(user);
 

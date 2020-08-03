@@ -13,6 +13,7 @@ import { UserRoleDto } from './dto/user-role.dto';
 import { UserRoleService } from './user-role.service';
 import { UserRoleEntity } from '../adminentities/user-role.entity';
 import { DeepPartial, DeleteResult } from 'typeorm';
+import { UserRoleCreateInputDto } from './dto/input/user-role-create.input.dto';
 
 @Resolver()
 @UseGuards(GqlAuthGuard, RolesGuard)
@@ -21,7 +22,7 @@ export class UserRoleResolver {
   constructor(private readonly userRoleService: UserRoleService) {}
 
   @Roles('MANAGER')
-  @Query(() => UserRoleDto, {
+  @Query(() => UserRoleEntity, {
     name: 'userRole',
     nullable: true,
     description: 'user role',
@@ -52,8 +53,8 @@ export class UserRoleResolver {
   }
 
   @Mutation(() => UserRoleEntity)
-  async userRoleCreate(@Args('data') data: UserRoleEntity) :Promise<UserRoleEntity>{
-    return await this.userRoleService.userRoleCreate(data);
+  async userRoleCreate(@Args('data') data: UserRoleCreateInputDto) :Promise<UserRoleEntity>{
+    return await this.userRoleService.create(data);
   }
 
   @Mutation(() => UserRoleEntity)
@@ -62,7 +63,7 @@ export class UserRoleResolver {
   }
 
   @Mutation(() => Int)
-  async userRoleDelete(@Args('data') data: UserRoleDeleteInputDto):Promise<DeleteResult> {
+  async userRoleDelete(@Args('data') data: UserRoleDeleteInputDto):Promise<number> {
     return await this.userRoleService.userRoleDelete(data.id);
   }
 }

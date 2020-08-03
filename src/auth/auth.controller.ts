@@ -11,6 +11,8 @@ import { Roles } from '../decorators/roles.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserLoginDto } from '../user/dto/user.login.dto';
 import { UserEntity } from '../adminentities/user.entity';
+import { ResetPasswordDto } from 'src/user/dto/user.resetpw.dto';
+import { UserDto } from 'src/user/dto/user.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -25,12 +27,12 @@ export class AuthController {
     return {  token };
   }
   @Post('signUp')
-  async signUp(@Body() user: UserEntity) : Promise<IToken> {
+  async signUp(@Body() user: UserDto) : Promise<IToken> {
     const token = await this.authService.signUp(user);
     return {  token };
   }
   @Post('updatePassword')
-  async changePassword(@Body() user: UserLoginDto): Promise<IToken> {
+  async changePassword(@Body() user: ResetPasswordDto): Promise<IToken> {
     // console.log('req:' + JSON.stringify( user));
     // console.log(JSON.stringify(body.user));
     const token = await this.authService.changePassword(user);

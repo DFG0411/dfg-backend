@@ -3,18 +3,20 @@ import { Args, Context, Info, Mutation, Resolver, Root } from '@nestjs/graphql';
 
 import { AuthService } from './auth.service';
 import { IToken } from './interfaces/token.interface';
-import { UserEntity } from 'src/adminentities/user.entity';
+// import { UserEntity } from 'src/adminentities/user.entity';
 import { ResetPasswordDto } from 'src/user/dto/user.resetpw.dto';
+import { UserLoginDto } from 'src/user/dto/user.login.dto';
+import { UserDto } from 'src/user/dto/user.dto';
 @Resolver('auth')
 export class AuthResolvers {
   constructor(private readonly authService: AuthService) {}
 
   @Mutation('signup')
-  async signup(@Args('data') data: UserEntity): Promise<IToken> {
+  async signup(@Args('data') data: UserDto): Promise<IToken> {
     return { token: await this.authService.signUp(data) };
   }
   @Mutation('login')
-  async login(@Args('data') data: UserEntity): Promise<IToken> {
+  async login(@Args('data') data: UserLoginDto): Promise<IToken> {
     return { token: await this.authService.login(data) };
   }
   @Mutation('changePassword')

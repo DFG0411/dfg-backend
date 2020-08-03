@@ -8,7 +8,7 @@ import { TVerifyedToken } from '../../session/session.types';
 
 @Injectable()
 export class GqlAuthGuard extends AuthGuard('jwt') {
-  canActivate(context: ExecutionContext) {
+  canActivate(context: ExecutionContext):any {
     const ctx = GqlExecutionContext.create(context);
     const { req } = ctx.getContext();
     if (req?.headers?.authorization) {
@@ -29,7 +29,7 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
     }
   }
 
-  handleRequest(err: any, user: any, info: any) {
+  handleRequest(err: Error, user: any, info: any):any {
     if (err || !user) {
       if (info.name === 'TokenExpiredError') {
         throw new TokenExpiredError(info.name, info.expiredAt);

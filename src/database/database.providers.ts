@@ -1,8 +1,10 @@
 import { createConnection, Connection } from 'typeorm';
-import { UserEntity } from 'src/adminentities/user.entity';
-import { UserRoleEntity } from 'src/adminentities/user-role.entity';
-import { Session } from 'src/adminentities/session.entity';
-
+// import { UserEntity } from 'src/adminentities/user.entity';
+// import { UserRoleEntity } from 'src/adminentities/user-role.entity';
+// import { Session } from 'src/adminentities/session.entity';
+import {SqlClient}  from 'msnodesqlv8';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const sqlDriver: SqlClient = require("msnodesqlv8");
 export const databaseProviders = [
   {
     provide: 'APPCONNECTION',
@@ -18,8 +20,15 @@ export const databaseProviders = [
         database: 'UFDATA_800_2017',
         entities: [ 'dist/appentities/**/*.entity.js'],
         synchronize: false,
-        logging: [/*'query',*/ 'error','schema'],
-        options: { tdsVersion: '7_1' ,encrypt:false,enableArithAbort:true,},
+        logging: [/*'query',*/ 'error'],
+        extra:{driver: sqlDriver,
+          options: {
+              trustedConnection: true,
+              encrypt:false,
+              enableArithAbort:true,
+              timeout:30000,
+          }},
+        // options: { tdsVersion: '7_1' ,encrypt:false,enableArithAbort:true,},
       }),
   },
   {
@@ -35,7 +44,7 @@ export const databaseProviders = [
         // domain: 'dfg.com.cn',
         database: 'DFGPG',
         entities: ['dist/adminentities/**/*.entity.js'],
-        synchronize: true,
+        synchronize: false,
         logging: [/*'query',*/ 'error'],
         // options: { tdsVersion: '7_1' ,encrypt:false,enableArithAbort:true,},
       }),

@@ -14,6 +14,7 @@ import { UserService } from './user.service';
 // import { root } from 'rxjs/internal/util/root';
 import { UserEntity } from '../adminentities/user.entity';
 import { DeleteResult } from 'typeorm';
+import { UserDto } from './dto/user.dto';
 // import { IToken } from 'src/auth/interfaces/token.interface';
 
 const pubSub = new PubSub();
@@ -24,7 +25,7 @@ export class UserResolvers {
 
   @Query(()=>[UserEntity])
   @UseGuards(GqlAuthGuard)
-  async getUsers(  ): Promise <UserEntity[]> {
+  async getUsers(): Promise <UserEntity[]> {
     return await this.userService.findAll();
   }
 
@@ -37,21 +38,21 @@ export class UserResolvers {
   }
 
   @Mutation(()=>UserEntity)
-  async updateUser(@Args('id') id:number,@Args('data') data:UserEntity):Promise<UserEntity>{
+  async updateUser(@Args('id') id:number,@Args('data') data:UserDto):Promise<UserEntity>{
     return await this.userService.update(id,data);
   }
   @Mutation(()=>UserEntity)
-  async patchUser(@Args('id') id:number,@Args('data') data:UserEntity):Promise<UserEntity>{
+  async patchUser(@Args('id') id:number,@Args('data') data:UserDto):Promise<UserEntity>{
     return await this.userService.patch(id,data);
   }
-  @Mutation(()=>DeleteResult)
-  async deleteUser(@Args('id') id:number):Promise<DeleteResult>{
+  @Mutation(()=>Number)
+  async deleteUser(@Args('id') id:number):Promise<number>{
     return await this.userService.delete(id);
   }
   
   @Mutation(()=>UserEntity)
   async create(
-    @Args('data') data: UserEntity,
+    @Args('data') data: UserDto,
   ): Promise<UserEntity> {
     const createdUser = await this.userService.create(data);
     pubSub.publish('userCreated', { userCreated: createdUser });

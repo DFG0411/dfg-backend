@@ -7,18 +7,17 @@ import { IJwtPayload } from '../interfaces/jwt-payload.interface';
 import {UserEntity} from '../../adminentities/user.entity';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy
-(Strategy, 'jwt') {
+export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
     super({
+      secretOrKey:'G1971g',
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       // secretOrKey: SERVER_CONFIG.jwtSecret,
-      secret:'G1971g',
       passReqToCallback: true,
     });
   }
 
-  public async validate(payload: IJwtPayload) {
+  public async validate(payload: IJwtPayload):Promise<Partial<UserEntity>> {
     // console.log('payload:' + payload.sub);
     // console.log('logininfo:' + JSON.stringify(longinUser));
     const user: UserEntity = await this.authService.validateUser(payload);

@@ -9,6 +9,7 @@ import { UserRoleUpdateInputDto } from './dto/input/user-role-update.input.dto';
 import {UserRoleEntity} from '../adminentities/user-role.entity';
 import { Repository,Like, DeepPartial, DeleteResult } from 'typeorm';
 import { BaseService } from 'src/base';
+import { UserRoleCreateInputDto } from './dto/input/user-role-create.input.dto';
 
 @Injectable()
 export class UserRoleService extends BaseService<UserRoleEntity> {
@@ -92,13 +93,13 @@ export class UserRoleService extends BaseService<UserRoleEntity> {
   //   'userRoleName',
   //   'userRole:validate:notUniqueUserRoleId',
   // )
-  async userRoleCreate(data: DeepPartial<UserRoleEntity>): Promise<UserRoleEntity> {
-    try {
-      return await super.create(data);
-    } catch (error) {
-      throw new BadRequestException('Unable to create UserRole.');
-    }
-  }
+  // async userRoleCreate(data: UserRoleCreateInputDto): Promise<UserRoleEntity> {
+  //   try {
+  //     return await super.create(data);
+  //   } catch (error) {
+  //     throw new BadRequestException('Unable to create UserRole.');
+  //   }
+  // }
 
   // @OptimisticLocking(true)
   // @CheckIsValueUnique(
@@ -115,10 +116,11 @@ export class UserRoleService extends BaseService<UserRoleEntity> {
   }
 
   // @OptimisticLocking(false)
-  async userRoleDelete(id: number): Promise<DeleteResult> {
+  async userRoleDelete(id: number): Promise<number> {
     try {
       // const { id, version } = data;
-      return await super.delete(id);
+      return super.delete(id);
+      // return id
     } catch (error) {
       throw new BadRequestException();
     }

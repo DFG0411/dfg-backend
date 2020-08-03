@@ -8,10 +8,11 @@ import { BomPlanModule } from './bom/plan.module';
 import { HourRateModule } from './hourrate/hourrate.module';
 import { StockTakingModule } from './stocktaking/stocktaking.module';
 import { MoModule } from './mo/mo.module';
-import {GraphQLModule} from '@nestjs/graphql'
+import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './user/user.module';
 import { UserRoleModule } from './user-role/user-role.module';
 import { SessionModule } from './session/session.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -24,6 +25,7 @@ import { SessionModule } from './session/session.module';
     UserModule,
     UserRoleModule,
     SessionModule,
+    AuthModule,
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
       // context: ({ req }) => ({ req }),
@@ -31,7 +33,7 @@ import { SessionModule } from './session/session.module';
       playground: process.env.GRAPHQL_PLAYGROUND === 'true',
       // formatError: graphqlError,
       installSubscriptionHandlers: true,
-    })
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

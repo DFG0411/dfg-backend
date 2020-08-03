@@ -1,19 +1,41 @@
-import { Field, Int, ObjectType,pa } from '@nestjs/graphql';
+import { Field, Int,  InputType, } from '@nestjs/graphql';
 import { UserRoleDto } from '../../user-role/dto/user-role.dto';
-
-@ObjectType()
-export class UserDto entends  DeepPartial<UserEntity> {
-  @Field(() => Int, { nullable: false }) id: number;
-  @Field(() => String, { nullable: true }) firstName: string;
-  @Field(() => String, { nullable: true }) middleName: string;
-  @Field(() => String, { nullable: true }) secondName: string;
-  @Field(() => String, { nullable: true }) displayName: string;
-  @Field(() => String, { nullable: false }) username: string;
-  @Field(() => String, { nullable: true }) email: string;
-  @Field(() => String, { nullable: true }) phone: string;
-  @Field(() => String, { nullable: true }) rem: string;
-  @Field(() => UserRoleDto, { nullable: false }) userRole: UserRoleDto;
-  @Field(() => Int, { nullable: false }) version: number;
-  @Field({ nullable: false }) createdAt: Date;
-  @Field({ nullable: false }) updatedAt: Date;
+import { ApiProperty } from '@nestjs/swagger';
+// import {DeepPartial} from 'typeorm'
+// import { UserEntity } from 'src/adminentities/user.entity';
+@InputType()
+export class UserDto {
+  @Field(() => String, { nullable: true }) 
+  @ApiProperty()
+  firstName: string;
+  @Field(() => String, { nullable: true }) 
+  @ApiProperty()
+  lastName: string;
+  @Field(() => String, { nullable: true })
+  @ApiProperty() 
+  displayName: string;
+  @Field(() => String, { nullable: false }) 
+  @ApiProperty()
+  name: string;
+  @Field(() => String, { nullable: true }) 
+  @ApiProperty()
+  email: string;
+  @Field(() => String, { nullable: true }) 
+  @ApiProperty()
+  phone: string;
+  @Field(() => String, { nullable: true }) 
+  @ApiProperty()
+  title: string;
+  @Field(() => String, { nullable: true }) 
+  @ApiProperty()
+  gender: string;
+  @Field(() => String, { nullable: true,defaultValue:'man' }) 
+  @ApiProperty()
+  password: string;
+  @Field(() => Date, { nullable: true }) 
+  @ApiProperty()
+  birthed: Date;
+  @Field(() => [UserRoleDto], { nullable: false }) 
+  @ApiProperty({type:()=>[UserRoleDto]})
+  roles: UserRoleDto[];
 }

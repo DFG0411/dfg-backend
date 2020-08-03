@@ -1,5 +1,5 @@
-import {BaseEntity, DeleteResult, DeepPartial} from 'typeorm';
-import {Body, Delete, Get, Param, ParseIntPipe, Patch, Post, Put} from '@nestjs/common';
+import {BaseEntity,  DeepPartial} from 'typeorm';
+import {Body, Delete, Get, Param, Patch, Post, Put} from '@nestjs/common';
 import {BaseService} from './base.service';
 
 export class BaseController<T extends BaseEntity> {
@@ -31,7 +31,8 @@ export class BaseController<T extends BaseEntity> {
 	}
 
 	@Delete('/:id')
-	public async delete(@Param('id') id: number): Promise<DeleteResult> {
-		return this.service.delete(id);
+	public async delete(@Param('id') id: number): Promise<number> {
+		return await this.service.delete(id);
+		// return id;
 	}
 }
