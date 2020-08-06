@@ -5,6 +5,7 @@ import { createConnection, Connection } from 'typeorm';
 import {SqlClient}  from 'msnodesqlv8';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sqlDriver: SqlClient = require("msnodesqlv8");
+
 export const databaseProviders = [
   {
     provide: 'APPCONNECTION',
@@ -18,7 +19,7 @@ export const databaseProviders = [
         password: 'G1971g',
         domain: 'dfg.com.cn',
         database: 'UFDATA_800_2017',
-        entities: [ 'dist/appentities/**/*.entity.js'],
+        entities: [ 'dist/app/entities/**/*.entity.js'],
         synchronize: false,
         logging: [/*'query',*/ 'error'],
         extra:{driver: sqlDriver,
@@ -43,8 +44,8 @@ export const databaseProviders = [
         password: 'G1971g',
         // domain: 'dfg.com.cn',
         database: 'DFGPG',
-        entities: ['dist/adminentities/**/*.entity.js'],
-        synchronize: false,
+        entities: ['dist/admin/entities/**/*.entity.js'],
+        synchronize: true,
         logging: [/*'query',*/ 'error'],
         // options: { tdsVersion: '7_1' ,encrypt:false,enableArithAbort:true,},
       }),

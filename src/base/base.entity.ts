@@ -1,27 +1,27 @@
-import {Column, BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, VersionColumn, Entity} from 'typeorm';
-import {ApiProperty} from '@nestjs/swagger';
+import { BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, VersionColumn, Entity} from 'typeorm';
+// import {ApiProperty} from '@nestjs/swagger';
 import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 @Entity()
 export class SupperEntity extends BaseEntity {
 
-	@ApiProperty()
+	// @ApiProperty()
 	@PrimaryGeneratedColumn()
 	@Field()
 	public id: number;
 
-	@ApiProperty()
+	// @ApiProperty()
 	@VersionColumn()
 	@Field()
 	public version: number;
 
-	@ApiProperty()
+	// @ApiProperty()
 	@CreateDateColumn()
 	@Field()
 	public cratedAt: Date;
 
-	@ApiProperty()
+	// @ApiProperty()
 	@UpdateDateColumn()
 	@Field()
 	public updatedAt: Date;

@@ -1,9 +1,11 @@
 import {BaseEntity,  DeepPartial} from 'typeorm';
 import {Body, Delete, Get, Param, Patch, Post, Put} from '@nestjs/common';
 import {BaseService} from './base.service';
+import { ApiBody } from '@nestjs/swagger';
 
 export class BaseController<T extends BaseEntity> {
 	protected service: BaseService<T>;
+	private dto :DeepPartial<T>={};
 
 	@Get('/')
 	public async findAll(): Promise<T[]> {
@@ -21,6 +23,7 @@ export class BaseController<T extends BaseEntity> {
 	}
 
 	@Put('/:id')
+	@ApiBody({type: this.dto})
 	public async update(@Param('id') id: number, @Body() data: DeepPartial<T>): Promise<T> {
 		return this.service.update(id, data);
 	}
