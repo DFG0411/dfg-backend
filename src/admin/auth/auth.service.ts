@@ -20,11 +20,13 @@ export class AuthService {
   ) {}
 
   async login(loginDto: UserLoginDto): Promise<string> {
-    const user: UserEntity = await this.usersService.findOne(loginDto);
-    if (!user ) {
-      throw new UnauthorizedException();
+    const{name,password}=loginDto;
+    const user: UserEntity = await this.usersService.findOne({name});
+    if (!user || user.password==''|| !compareSync(password,user.password)) {
+      throw new UnauthorizedException('Login failed.');
     }
-    const roles=user.roles.map(r=>r.name);
+
+    const roles=user?.roles?user.roles.map(r=>r.name):['guest'];
     const jwtPayload: IJwtPayload = {
       sub: user.id,
       roles:roles,
@@ -55,23 +57,9 @@ export class AuthService {
     return await this.usersService.findOneById(payload.sub);
   }
 
-  async changePassword(resetDto: ResetPasswordDto): Promise<string> {
-    if (!resetDto.email) {
-      throw new UnauthorizedException('The email field is not provided.');
-    }
-    if (!resetDto.password) {
-      throw new UnauthorizedException('The password field is not provided.');
-    }
-    let user: UserEntity = await this.usersService.findOne({name: resetDto.name,
-       email: resetDto.email
-      });
-    if (!user) {
-      throw new UnauthorizedException('The user key and email are not valid.');
-    }
-    if (user.password !== '' && !compareSync(resetDto.password, user.password)) {
-        throw new UnauthorizedException('The password of user is not correct.');
-      }
-    user = await this.usersService.patch(user.id, { password: resetDto.newPassword });
+  async changePassword(id:number,resetDto: ResetPasswordDto): Promise<string> {
+    
+    const user:UserEntity = await this.usersService.changePassword(id, resetDto );
 
     const roles=user.roles.map(r=>r.name);
     const jwtPayload: IJwtPayload = {

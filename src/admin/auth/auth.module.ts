@@ -11,7 +11,7 @@ import { AuthResolvers } from './auth.resolvers';
   imports: [
     PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.register({
-      secret:'G1971g',
+      secretOrPrivateKey:process.env.JWT_SECRET||'G1971g',
       signOptions: {
         expiresIn: '7d',
       },

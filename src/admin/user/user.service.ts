@@ -1,12 +1,12 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
-import { Repository, DeepPartial } from 'typeorm';
+import { Inject, Injectable, BadRequestException } from '@nestjs/common';
+import { Repository,  } from 'typeorm';
 // import { USER_MODEL_TOKEN_MSSQL } from '../server.constants';
 import { BaseService } from '../../base';
 import { UserEntity } from '../entities/user.entity';
 import { hashSync, compareSync } from 'bcryptjs';
 // import { UserLoginDto } from './dto/user.login.dto';
 // import { IToken } from 'src/auth/interfaces/token.interface';
-import { ResetPasswordDto, UpdateUserDto } from './dto/user.input';
+import { ResetPasswordDto, UpdateUserDto, CreateUserDto } from './dto/user.input';
 @Injectable()
 export class UserService extends BaseService<UserEntity> {
   constructor(
@@ -17,29 +17,36 @@ export class UserService extends BaseService<UserEntity> {
     super();
   }
 
-
-  async changePassword(resetPwdto: ResetPasswordDto): Promise<UserEntity> {
-    if (!resetPwdto.email) {
-      throw new UnauthorizedException('The email field is not provided.');
+  async create(data:CreateUserDto) :Promise<UserEntity>{
+    const {password}=data;
+    if (!password) throw new BadRequestException('The password field must not be empty.')
+    data.password=hashSync(password);
+    return await super.create(data);
+  }
+  async changePassword(id:number,resetPwDto: ResetPasswordDto): Promise<UserEntity> {
+    const{password,newPassword}=resetPwDto;
+    
+    if (!password) {
+      throw new BadRequestException('The password field is not provided.');
     }
-    if (!resetPwdto.password) {
-      throw new UnauthorizedException('The password field is not provided.');
+    if (!newPassword) {
+      throw new BadRequestException('The new password field is not provided.');
     }
-    const user: UserEntity = await this.findOne({
-      name: resetPwdto.name,
-      email: resetPwdto.email,
-    });
+    if (password==newPassword) {
+      throw new BadRequestException('The new password must be different from the old one.');
+    }
+    const user: UserEntity = await this.findOneById(id);
     if (!user) {
-      throw new UnauthorizedException('The user key and email are not valid.');
+      throw new BadRequestException('The user key and email are not valid.');
     }
     if (
       user.password !== '' &&
-      !compareSync(resetPwdto.password, user.password)
+      !compareSync(password, user.password)
     ) {
-      throw new UnauthorizedException('The password of user is not correct.');
+      throw new BadRequestException('The password of user is not correct.');
     }
-    return await super.patch(user.id, {
-      password: hashSync(resetPwdto.newPassword),
+    return await super.patch(id, {
+      password: hashSync(resetPwDto.newPassword),
     });
   }
 
@@ -48,16 +55,16 @@ export class UserService extends BaseService<UserEntity> {
     id: number,
     data:UpdateUserDto,
   ): Promise<UserEntity> {
-    const user = await this.findOneById(id);
-    data.password = user.password;
-    return await super.update(id,data);
+    const user = await this.findOneById(id,{cache:true});
+    const pwd = user.password;
+    return await super.update(id,{...data,password:pwd});
   }
 
   public async patch(
     id: number,
-    data: DeepPartial<UserEntity>,
+    data: UpdateUserDto,
   ): Promise<UserEntity> {
-    delete data.password;
-    return super.patch(id, data);
+    // delete data.password;
+    return await super.patch(id, data);
   }
 }

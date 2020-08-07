@@ -1,10 +1,11 @@
 import { createConnection, Connection } from 'typeorm';
-// import { UserEntity } from 'src/adminentities/user.entity';
-// import { UserRoleEntity } from 'src/adminentities/user-role.entity';
-// import { Session } from 'src/adminentities/session.entity';
-import {SqlClient}  from 'msnodesqlv8';
+import { databaseConfig } from '../common/config/databaseConfig';
+import { IDatabaseConfig } from '../common/config/interfaces/IDatabase';
+
+import { SqlClient } from 'msnodesqlv8';
+// import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const sqlDriver: SqlClient = require("msnodesqlv8");
+const sqlDriver: SqlClient = require('msnodesqlv8');
 
 export const databaseProviders = [
   {
@@ -12,42 +13,38 @@ export const databaseProviders = [
     useFactory: async (): Promise<Connection> =>
       await createConnection({
         type: 'mssql',
-        name:'AppConnection',
+        name: 'AppConnection',
         host: '10.151.80.151',
         port: 1433,
         username: 'it08',
         password: 'G1971g',
         domain: 'dfg.com.cn',
         database: 'UFDATA_800_2017',
-        entities: [ 'dist/app/entities/**/*.entity.js'],
+        entities: ['dist/app/entities/**/*.entity.js'],
         synchronize: false,
         logging: [/*'query',*/ 'error'],
-        extra:{driver: sqlDriver,
+        extra: {
+          driver: sqlDriver,
           options: {
-              trustedConnection: true,
-              encrypt:false,
-              enableArithAbort:true,
-              timeout:30000,
-          }},
+            trustedConnection: true,
+            encrypt: false,
+            enableArithAbort: true,
+            timeout: 30000,
+          },
+        },
         // options: { tdsVersion: '7_1' ,encrypt:false,enableArithAbort:true,},
       }),
   },
   {
     provide: 'ADMCONNECTION',
-    useFactory: async (): Promise<Connection> =>
-      await createConnection({
+    useFactory: async (): Promise<Connection> => {
+      const config: IDatabaseConfig = databaseConfig;
+      // console.log('env:' +JSON.stringify (config));
+      return await createConnection({
         type: 'postgres',
-        name:'AdmConnection',
-        host: 'host.docker.internal',
-        port: 5432,
-        username: 'postgres',
-        password: 'G1971g',
-        // domain: 'dfg.com.cn',
-        database: 'DFGPG',
+        ...config,
         entities: ['dist/admin/entities/**/*.entity.js'],
-        synchronize: true,
-        logging: [/*'query',*/ 'error'],
-        // options: { tdsVersion: '7_1' ,encrypt:false,enableArithAbort:true,},
-      }),
+      });
+    },
   },
 ];

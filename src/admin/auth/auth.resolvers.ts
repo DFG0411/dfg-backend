@@ -2,22 +2,28 @@ import { Args,  Mutation, Resolver, } from '@nestjs/graphql';
 // import { PubSub } from 'graphql-subscriptions';
 
 import { AuthService } from './auth.service';
-import { IToken } from './interfaces/token.interface';
+import { TokenDto } from './interfaces/token.dto';
 import { CreateUserDto, UserLoginDto, ResetPasswordDto} from '../user/dto/user.input';
 @Resolver(('auth'))
 export class AuthResolvers {
   constructor(private readonly authService: AuthService) {}
 
-  @Mutation(()=>IToken)
-  async signup(@Args('data') data: CreateUserDto): Promise<IToken> {
-    return { token: await this.authService.signUp(data) };
+  @Mutation(()=>TokenDto)
+  async signup(@Args('data') data: CreateUserDto): Promise<TokenDto> {
+    const token = await this.authService.signUp(data);
+    return {  token };
+    // return { token: await this.authService.signUp(data) };
   }
-  @Mutation(()=>IToken)
-  async login(@Args('data') data: UserLoginDto): Promise<IToken> {
-    return { token: await this.authService.login(data) };
+  @Mutation(()=>TokenDto)
+  async login(@Args('data') data: UserLoginDto): Promise<TokenDto> {
+    // return { token: await this.authService.login(data) };
+    const token = await this.authService.login(data);
+    return {  token };
   }
-  @Mutation(()=>IToken)
-  async changePassword(@Args('data') data: ResetPasswordDto): Promise<IToken> {
-    return { token: await this.authService.changePassword(data) };
+  @Mutation(()=>TokenDto)
+  async changePassword(@Args('id') id:number,@Args('data') data: ResetPasswordDto): Promise<TokenDto> {
+    const token = await this.authService.changePassword(id,data);
+    return {  token };
+    // return { token: await this.authService.changePassword(data) };
   }
 }

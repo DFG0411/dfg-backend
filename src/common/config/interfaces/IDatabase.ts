@@ -1,16 +1,21 @@
 // import { Dialect } from 'sequelize/types';
 
-export interface IDatabaseConfigAttributes {
-  username: string;
-  password: string;
-  database: string;
-  host: string;
-  port: number;
-  dialect: string;
-}
+import { LoggerOptions } from "typeorm/logger/LoggerOptions";
+// import { SqlServerConnectionOptions } from "typeorm/driver/sqlserver/SqlServerConnectionOptions";
 
 export interface IDatabaseConfig {
-  develop: IDatabaseConfigAttributes;
-  production: IDatabaseConfigAttributes;
-  test: IDatabaseConfigAttributes;
+  name:string,
+  username: string,
+  password: string,
+  database: string,
+  host: string,
+  port: number,
+  synchronize:boolean,
+  logging:LoggerOptions
 }
+
+// export interface IDatabaseConfig {
+//   develop: IDatabaseConfigAttributes;
+//   production: IDatabaseConfigAttributes;
+//   test: IDatabaseConfigAttributes;
+// }

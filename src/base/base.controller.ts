@@ -5,7 +5,7 @@ import { ApiBody } from '@nestjs/swagger';
 
 export class BaseController<T extends BaseEntity> {
 	protected service: BaseService<T>;
-	private dto :DeepPartial<T>={};
+	// private dto :DeepPartial<T>={};
 
 	@Get('/')
 	public async findAll(): Promise<T[]> {
@@ -23,7 +23,7 @@ export class BaseController<T extends BaseEntity> {
 	}
 
 	@Put('/:id')
-	@ApiBody({type: this.dto})
+	// @ApiBody({type: this.dto})
 	public async update(@Param('id') id: number, @Body() data: DeepPartial<T>): Promise<T> {
 		return this.service.update(id, data);
 	}

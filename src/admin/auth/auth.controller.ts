@@ -2,13 +2,14 @@ import {
   Controller,
   Post,
   Get,
-  Body
+  Body,
+  Param
 } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
-import { IToken } from './interfaces/token.interface';
+import { TokenDto } from './interfaces/token.dto';
 import { Roles } from '../../decorators/roles.decorator';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiParam } from '@nestjs/swagger';
 import { CreateUserDto, UserLoginDto, ResetPasswordDto} from '../user/dto/user.input';
 
 @ApiTags('auth')
@@ -17,22 +18,23 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signIn')
-  async SignIn(@Body() user: UserLoginDto): Promise<IToken> {
+  async SignIn(@Body() user: UserLoginDto): Promise<TokenDto> {
     // console.log('req:' + JSON.stringify( user));
     // console.log(JSON.stringify(body.user));
     const token = await this.authService.login(user);
     return {  token };
   }
   @Post('signUp')
-  async signUp(@Body() user: CreateUserDto) : Promise<IToken> {
+  async signUp(@Body() user: CreateUserDto) : Promise<TokenDto> {
     const token = await this.authService.signUp(user);
     return {  token };
   }
-  @Post('updatePassword')
-  async changePassword(@Body() user: ResetPasswordDto): Promise<IToken> {
+  @Post('updatePassword/:id')
+  @ApiParam({name:'id',type:String})
+  async changePassword(@Param('id') id: number,@Body() user: ResetPasswordDto): Promise<TokenDto> {
     // console.log('req:' + JSON.stringify( user));
     // console.log(JSON.stringify(body.user));
-    const token = await this.authService.changePassword(user);
+    const token = await this.authService.changePassword(id,user);
     return { token };
   }
   @Get('authorized')

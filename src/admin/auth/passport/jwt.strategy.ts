@@ -10,7 +10,7 @@ import {UserEntity} from '../../entities/user.entity';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
     super({
-      secretOrKey:'G1971g',
+      secretOrKey:process.env.JWT_SECRET||'G1971g',
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       // secretOrKey: SERVER_CONFIG.jwtSecret,
       passReqToCallback: true,

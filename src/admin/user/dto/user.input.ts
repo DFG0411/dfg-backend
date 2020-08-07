@@ -50,9 +50,9 @@ export class UpdateUserDto {
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
   email: string;
-  @Field(() => String, { nullable: true }) 
-  @ApiProperty()
-  password: string;
+  // @Field(() => String, { nullable: true }) 
+  // @ApiProperty()
+  // password: string;
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
   phone: string;
@@ -83,14 +83,8 @@ export class UserLoginDto {
 export class ResetPasswordDto {
   @ApiProperty() 
   @Field()
-  name: string;
-  @ApiProperty() 
-  @Field()
   password: string;
   @ApiProperty() 
   @Field()
   newPassword?: string;
-  @ApiProperty() 
-  @Field()
-  email?: string;
 }

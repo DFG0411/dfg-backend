@@ -33,7 +33,7 @@ export class UserEntity extends SupperEntity {
 
   @ApiProperty()
   @IsString()
-  @Column()
+  @Column({ unique: true })
   @Field()
   name: string;
 
@@ -101,9 +101,9 @@ export class UserEntity extends SupperEntity {
   // @Field(() => [UserRoleEntity])
   roles: UserRoleEntity[];
 
-  @BeforeInsert()
-  @BeforeUpdate()
-  hashPassword(): void {
-    this.password = hashSync(this.password);
-  }
+  // @BeforeInsert()
+  // @BeforeUpdate()
+  // hashPassword(): void {
+  //   this.password = hashSync(this.password);
+  // }
 }

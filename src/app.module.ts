@@ -13,6 +13,7 @@ import { UserModule } from './admin/user/user.module';
 import { UserRoleModule } from './admin/user-role/user-role.module';
 import { SessionModule } from './admin/session/session.module';
 import { AuthModule } from './admin/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     DatabaseModule,
@@ -26,11 +27,12 @@ import { AuthModule } from './admin/auth/auth.module';
     UserRoleModule,
     SessionModule,
     AuthModule,
+    ConfigModule.forRoot({isGlobal:true}),
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
-      // context: ({ req }) => ({ req }),
+      context: ({ req }) => ({ req }),
       debug: false,
-      playground: true,
+      playground: process.env.GRAPHQL_PLAYGROUND=='true',
       // formatError: graphqlError,
       installSubscriptionHandlers: true,
     }),
