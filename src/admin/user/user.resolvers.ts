@@ -12,7 +12,7 @@ import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { UserService } from './user.service';
 // import { IUser } from './interfaces/user.interface';
 // import { root } from 'rxjs/internal/util/root';
-import { UserEntity } from '../entities/user.entity';
+import { User } from '../entities/user.entity';
 import { CreateUserDto, UpdateUserDto } from './dto/user.input';
 // import { IToken } from 'src/auth/interfaces/token.interface';
 
@@ -22,26 +22,26 @@ const pubSub = new PubSub();
 export class UserResolvers {
   constructor(private readonly userService: UserService) {}
 
-  @Query(()=>[UserEntity])
+  @Query(()=>[User])
   // @UseGuards(GqlAuthGuard)
-  async getUsers(): Promise <UserEntity[]> {
+  async getUsers(): Promise <User[]> {
     return await this.userService.findAll();
   }
 
-  @Query(()=>UserEntity)
+  @Query(()=>User)
   async user(
     @Args('id') id: number,
-  ): Promise<UserEntity> {
+  ): Promise<User> {
     // console.log('userkey:' + _key);
     return await this.userService.findOneById(id);
   }
 
-  @Mutation(()=>UserEntity)
-  async updateUser(@Args('id') id:number,@Args('data') data:UpdateUserDto):Promise<UserEntity>{
+  @Mutation(()=>User)
+  async updateUser(@Args('id') id:number,@Args('data') data:UpdateUserDto):Promise<User>{
     return await this.userService.update(id,data);
   }
-  @Mutation(()=>UserEntity)
-  async patchUser(@Args('id') id:number,@Args('data') data:UpdateUserDto):Promise<UserEntity>{
+  @Mutation(()=>User)
+  async patchUser(@Args('id') id:number,@Args('data') data:UpdateUserDto):Promise<User>{
     return await this.userService.patch(id,data);
   }
   @Mutation(()=>Number)
@@ -49,14 +49,14 @@ export class UserResolvers {
     return await this.userService.delete(id);
   }
   
-  @Mutation(()=>UserEntity)
-  async createUser( @Args('data') data: CreateUserDto ): Promise<UserEntity> {
+  @Mutation(()=>User)
+  async createUser( @Args('data') data: CreateUserDto ): Promise<User> {
     // console.log('create');
     const createdUser = await this.userService.create(data);
     pubSub.publish('userCreated', { userCreated: createdUser });
     return createdUser;
   }
-  @Subscription(()=>UserEntity)
+  @Subscription(()=>User)
   userCreated():any{
     return {
       subscribe: () => pubSub.asyncIterator('userCreated'),

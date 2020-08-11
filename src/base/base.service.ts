@@ -1,5 +1,5 @@
 import {  BadRequestException, Injectable } from '@nestjs/common';
-import { BaseEntity,  Repository, DeepPartial,} from 'typeorm';
+import { BaseEntity,  Repository, DeepPartial, FindManyOptions,} from 'typeorm';
 import { validate, } from 'class-validator';
 // import {Config} from '../../config/config';
 import {FindOneOptions} from 'typeorm/find-options/FindOneOptions';
@@ -8,8 +8,8 @@ import {FindConditions} from 'typeorm/find-options/FindConditions';
 export class BaseService<T extends BaseEntity> {
 	protected repository: Repository<T>;
 
-	public async findAll(): Promise<T[]> {
-		return await this.repository.find();
+	public async findAll(options?:FindManyOptions): Promise<T[]> {
+		return await this.repository.find(options);
 	}
 
 	public async findOneById(id: number, options?: FindOneOptions<T>): Promise<T> {

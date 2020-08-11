@@ -1,12 +1,12 @@
 // import { Database } from 'arangojs';
 import {Connection, Repository} from 'typeorm';
-import {User} from '../entities/user.entity';
+import {File} from '../entities/file.entity';
 
-export const userProviders = [
+export const fileProviders = [
   {
-    provide: 'USER_MODEL_TOKEN',
+    provide: 'File_MODEL_TOKEN',
     inject: ['ADMCONNECTION'],
-    useFactory: (connection: Connection) :Repository<User>=>  connection.getRepository(User),
+    useFactory: (connection: Connection) :Repository<File>=>  connection.getRepository(File),
 
   },
   // {

@@ -4,7 +4,7 @@ import { BadRequestException, ExecutionContext, Injectable } from '@nestjs/commo
 import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
-import { TVerifyedToken } from '../../session/session.types';
+import { TVerifiedToken } from '../../session/session.types';
 
 @Injectable()
 export class GqlAuthGuard extends AuthGuard('jwt') {
@@ -13,13 +13,13 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
     const { req } = ctx.getContext();
     if (req?.headers?.authorization) {
       const accessToken: string = req.headers.authorization.split(' ')[1];
-      const payload: TVerifyedToken = verify(
+      const payload: TVerifiedToken = verify(
         accessToken,
         process.env.JWT_SECRET,
         {
           algorithms: ['HS256'],
         },
-      ) as TVerifyedToken;
+      ) as TVerifiedToken;
 
       if (typeof payload !== 'string' && payload) {
         return super.canActivate(new ExecutionContextHost([req]));

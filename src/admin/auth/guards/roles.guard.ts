@@ -32,7 +32,7 @@ export class RolesGuard implements CanActivate {
     const ctx = GqlExecutionContext.create(context);
     const { req } = ctx.getContext();
     let payload: TDecodedToken;
-
+    console.log('user:' + JSON.stringify(req.user));
     if (req?.headers?.authorization) {
       const accessToken: string = req.headers.authorization.split(' ')[1];
       payload = decode(accessToken) as TDecodedToken;

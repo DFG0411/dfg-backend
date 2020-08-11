@@ -20,13 +20,13 @@ import {
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { SupperEntity } from '../../base';
 import { hashSync, } from 'bcryptjs';
-import { UserRoleEntity } from './user-role.entity';
+import { UserRole } from './user-role.entity';
 import { ObjectType, Field } from '@nestjs/graphql';
 
 
 @ObjectType()
 @Entity({ name: 'user' })
-export class UserEntity extends SupperEntity {
+export class User extends SupperEntity {
 	@PrimaryGeneratedColumn()
 	@Field()
 	id: number;
@@ -89,18 +89,45 @@ export class UserEntity extends SupperEntity {
   @MinLength(7)
   @Column()
   @Field()
-  public password: string;
+  password: string;
 
   @ApiProperty()
   @IsArray()
-  @ManyToMany(() => UserRoleEntity, (role) => role.users, {
+  @ManyToMany(() => UserRole, (role) => role.users, {
     cascade: true,
   })
-  @Field(()=>[UserRoleEntity])
+  @Field(()=>[UserRole])
   @JoinTable()
   // @Field(() => [UserRoleEntity])
-  roles: UserRoleEntity[];
+  roles: UserRole[];
+  @Field()
+  @Column({ nullable: true})
+  avatar: string
+  
+  @Column({ nullable: true,default:false})
+  isVerified: boolean
+  
+	@Column({ nullable: true,default:false})
+	isOnline: boolean
 
+  @Column({ nullable: true,default:false})
+  isLocked: boolean
+  
+  @Field()
+	@Column({ nullable: true,default:false})
+	lockReason: string
+
+	@Field()
+	@Column({ nullable: true,default:false})
+  isActive: boolean
+  
+  @Field()
+	@Column({ nullable: true})
+	resetPasswordToken: string
+
+	@Field()
+	@Column({ nullable: true})
+	resetPasswordExpires: number
   // @BeforeInsert()
   // @BeforeUpdate()
   // hashPassword(): void {

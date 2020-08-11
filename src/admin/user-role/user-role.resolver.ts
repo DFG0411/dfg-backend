@@ -11,7 +11,7 @@ import { UserRoleDeleteInputDto } from './dto/input/user-role-delete.input.dto';
 import { UserRoleUpdateInputDto } from './dto/input/user-role-update.input.dto';
 import { UserRoleDto } from './dto/user-role.dto';
 import { UserRoleService } from './user-role.service';
-import { UserRoleEntity } from '../entities/user-role.entity';
+import { UserRole } from '../entities/user-role.entity';
 import { DeepPartial, DeleteResult } from 'typeorm';
 import { UserRoleCreateInputDto } from './dto/input/user-role-create.input.dto';
 
@@ -22,43 +22,43 @@ export class UserRoleResolver {
   constructor(private readonly userRoleService: UserRoleService) {}
 
   @Roles('MANAGER')
-  @Query(() => UserRoleEntity, {
+  @Query(() => UserRole, {
     name: 'userRole',
     nullable: true,
     description: 'user role',
   })
-  async userRole(@Args() { id }: UserRoleArgsDto):Promise<UserRoleEntity> {
+  async userRole(@Args() { id }: UserRoleArgsDto):Promise<UserRole> {
     return this.userRoleService.userRole(id);
   }
 
-  @Query(() => [UserRoleEntity], {
+  @Query(() => [UserRole], {
     nullable: true,
     description:
       'filtered user role list',
   })
   async userRoleList(
     @Args() { textFilter, page, paging }: UserRoleListArgsDto,
-  ) :Promise<UserRoleEntity[]>{
+  ) :Promise<UserRole[]>{
     return this.userRoleService.userRoleList(textFilter, page, paging);
   }
 
   @Roles('MANAGER')
-  @Query(() => [UserRoleEntity], {
+  @Query(() => [UserRole], {
     nullable: true,
     description:
       'find roles by names',
   })
-  async userRoles(@Args() { userRoleNames }: UserRolesArgsDto):Promise<UserRoleEntity[]> {
+  async userRoles(@Args() { userRoleNames }: UserRolesArgsDto):Promise<UserRole[]> {
     return await this.userRoleService.userRoles(userRoleNames);
   }
 
-  @Mutation(() => UserRoleEntity)
-  async userRoleCreate(@Args('data') data: UserRoleCreateInputDto) :Promise<UserRoleEntity>{
+  @Mutation(() => UserRole)
+  async userRoleCreate(@Args('data') data: UserRoleCreateInputDto) :Promise<UserRole>{
     return await this.userRoleService.create(data);
   }
 
-  @Mutation(() => UserRoleEntity)
-  async userRoleUpdate(@Args('data') data: UserRoleUpdateInputDto):Promise<UserRoleEntity> {
+  @Mutation(() => UserRole)
+  async userRoleUpdate(@Args('data') data: UserRoleUpdateInputDto):Promise<UserRole> {
     return await this.userRoleService.userRoleUpdate(data.id,data);
   }
 

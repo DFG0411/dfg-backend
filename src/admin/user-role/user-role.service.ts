@@ -6,21 +6,21 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 // import { UserRoleCreateInputDto } from './dto/input/user-role-create.input.dto';
 // import { UserRoleDeleteInputDto } from './dto/input/user-role-delete.input.dto';
 import { UserRoleUpdateInputDto } from './dto/input/user-role-update.input.dto';
-import {UserRoleEntity} from '../entities/user-role.entity';
+import {UserRole} from '../entities/user-role.entity';
 import { Repository,Like, DeepPartial, DeleteResult } from 'typeorm';
 import { BaseService } from 'src/base';
 import { UserRoleCreateInputDto } from './dto/input/user-role-create.input.dto';
 
 @Injectable()
-export class UserRoleService extends BaseService<UserRoleEntity> {
+export class UserRoleService extends BaseService<UserRole> {
   constructor(
     @Inject('USER_ROLE_REPOSITORY')
-    protected readonly repository: Repository<UserRoleEntity>,
+    protected readonly repository: Repository<UserRole>,
   ) {
     super();
   }
 
-  public async checkVersion(id: number): Promise<UserRoleEntity | undefined> {
+  public async checkVersion(id: number): Promise<UserRole | undefined> {
     try {
       return await this.repository.findOne( id,{
         select: ['version'],
@@ -30,7 +30,7 @@ export class UserRoleService extends BaseService<UserRoleEntity> {
     }
   }
 
-  public async userRole(id: number): Promise<UserRoleEntity | undefined> {
+  public async userRole(id: number): Promise<UserRole | undefined> {
     try {
       return await this.repository.findOne({
         where: { id },
@@ -44,7 +44,7 @@ export class UserRoleService extends BaseService<UserRoleEntity> {
     textFilter: string,
     page: number,
     paging: number,
-  ): Promise<UserRoleEntity[]> {
+  ): Promise<UserRole[]> {
     try {
       const filter = `%${textFilter}%`;
       return await this.repository.find({
@@ -60,7 +60,7 @@ export class UserRoleService extends BaseService<UserRoleEntity> {
     }
   }
 
-  async userRoles(userRoleNames: string[]): Promise<UserRoleEntity[]> {
+  async userRoles(userRoleNames: string[]): Promise<UserRole[]> {
     try {
       let whereCondition = {};
       if (userRoleNames.length > 0) {
@@ -78,7 +78,7 @@ export class UserRoleService extends BaseService<UserRoleEntity> {
     }
   }
 
-  async userRoleNameFind(name: string): Promise<UserRoleEntity> {
+  async userRoleNameFind(name: string): Promise<UserRole> {
     try {
       return await this.repository.findOne({
         where: { name },
@@ -107,7 +107,7 @@ export class UserRoleService extends BaseService<UserRoleEntity> {
   //   'userRoleName',
   //   'userRole:validate:notUniqueUserRoleId',
   // )
-  async userRoleUpdate(id:number,data: UserRoleUpdateInputDto): Promise<UserRoleEntity> {
+  async userRoleUpdate(id:number,data: UserRoleUpdateInputDto): Promise<UserRole> {
     try {
       return  await super.update(id, data);
     } catch (error) {

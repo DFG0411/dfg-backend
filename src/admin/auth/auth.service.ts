@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { IJwtPayload } from './interfaces/jwt-payload.interface';
-import {UserEntity} from '../entities/user.entity';
+import {User} from '../entities/user.entity';
 import { UserLoginDto, CreateUserDto ,ResetPasswordDto} from '../user/dto/user.input';
 import {  compareSync } from 'bcryptjs';
 
@@ -21,7 +21,7 @@ export class AuthService {
 
   async login(loginDto: UserLoginDto): Promise<string> {
     const{name,password}=loginDto;
-    const user: UserEntity = await this.usersService.findOne({name});
+    const user: User = await this.usersService.findOne({name});
     if (!user || user.password==''|| !compareSync(password,user.password)) {
       throw new UnauthorizedException('Login failed.');
     }
@@ -41,7 +41,7 @@ export class AuthService {
     // try {
       // console.log(user);
 
-      const createdUser: UserEntity = await this.usersService.create(user);
+      const createdUser: User = await this.usersService.create(user);
       const roles=user.roles.map(r=>r.name);
       const jwtPayload: IJwtPayload = {
         sub: createdUser.id,
@@ -52,14 +52,14 @@ export class AuthService {
     //   throw new NotAcceptableException('Can`t create user.');
     // }
   }
-  async validateUser(payload: IJwtPayload): Promise<UserEntity> {
+  async validateUser(payload: IJwtPayload): Promise<User> {
     // console.log('authserv-payload:' + payload);
     return await this.usersService.findOneById(payload.sub);
   }
 
   async changePassword(id:number,resetDto: ResetPasswordDto): Promise<string> {
     
-    const user:UserEntity = await this.usersService.changePassword(id, resetDto );
+    const user:User = await this.usersService.changePassword(id, resetDto );
 
     const roles=user.roles.map(r=>r.name);
     const jwtPayload: IJwtPayload = {

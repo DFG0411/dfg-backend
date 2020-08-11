@@ -2,28 +2,28 @@ import { Inject, Injectable, BadRequestException } from '@nestjs/common';
 import { Repository,  } from 'typeorm';
 // import { USER_MODEL_TOKEN_MSSQL } from '../server.constants';
 import { BaseService } from '../../base';
-import { UserEntity } from '../entities/user.entity';
+import { User } from '../entities/user.entity';
 import { hashSync, compareSync } from 'bcryptjs';
 // import { UserLoginDto } from './dto/user.login.dto';
 // import { IToken } from 'src/auth/interfaces/token.interface';
 import { ResetPasswordDto, UpdateUserDto, CreateUserDto } from './dto/user.input';
 @Injectable()
-export class UserService extends BaseService<UserEntity> {
+export class UserService extends BaseService<User> {
   constructor(
     @Inject('USER_MODEL_TOKEN')
-    protected readonly repository: Repository<UserEntity>,
+    protected readonly repository: Repository<User>,
   ) 
   {
     super();
   }
 
-  async create(data:CreateUserDto) :Promise<UserEntity>{
+  async create(data:CreateUserDto) :Promise<User>{
     const {password}=data;
     if (!password) throw new BadRequestException('The password field must not be empty.')
     data.password=hashSync(password);
     return await super.create(data);
   }
-  async changePassword(id:number,resetPwDto: ResetPasswordDto): Promise<UserEntity> {
+  async changePassword(id:number,resetPwDto: ResetPasswordDto): Promise<User> {
     const{password,newPassword}=resetPwDto;
     
     if (!password) {
@@ -35,7 +35,7 @@ export class UserService extends BaseService<UserEntity> {
     if (password==newPassword) {
       throw new BadRequestException('The new password must be different from the old one.');
     }
-    const user: UserEntity = await this.findOneById(id);
+    const user: User = await this.findOneById(id);
     if (!user) {
       throw new BadRequestException('The user key and email are not valid.');
     }
@@ -54,7 +54,7 @@ export class UserService extends BaseService<UserEntity> {
   public async update(
     id: number,
     data:UpdateUserDto,
-  ): Promise<UserEntity> {
+  ): Promise<User> {
     const user = await this.findOneById(id,{cache:true});
     const pwd = user.password;
     return await super.update(id,{...data,password:pwd});
@@ -63,7 +63,7 @@ export class UserService extends BaseService<UserEntity> {
   public async patch(
     id: number,
     data: UpdateUserDto,
-  ): Promise<UserEntity> {
+  ): Promise<User> {
     // delete data.password;
     return await super.patch(id, data);
   }

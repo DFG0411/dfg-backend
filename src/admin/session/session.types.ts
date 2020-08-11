@@ -16,4 +16,4 @@ interface IDecodedToken {
 
 export type TDecodedToken = IDecodedToken | null | string;
 
-export type TVerifyedToken = IDecodedToken | string;
+export type TVerifiedToken = IDecodedToken | string;
