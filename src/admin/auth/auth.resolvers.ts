@@ -10,7 +10,7 @@ export class AuthResolvers {
 
   @Mutation(()=>TokenDto)
   async signup(@Args('data') data: CreateUserDto): Promise<TokenDto> {
-    const token = await this.authService.signUp(data);
+    const token = await this.authService.register(data);
     return {  token };
     // return { token: await this.authService.signUp(data) };
   }

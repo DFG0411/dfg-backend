@@ -1,15 +1,22 @@
-import { Module, MiddlewareConsumer } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+import { Module, forwardRef, Global,  } from '@nestjs/common';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './passport/jwt.strategy';
 import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { AuthResolvers } from './auth.resolvers';
+import { RolesGuard } from './guards/roles.guard';
+import { UserRoleModule } from '../user-role/user-role.module';
+// import { AppModule } from 'src/app.module';
+// import { JwtService } from '@nestjs/jwt';
 // import { JWTMiddleware } from './middlewares/jwt.middleware';
 // import { SERVER_CONFIG } from '../server.constants';
+@Global()
 @Module({
   imports: [
+    UserModule,
+    UserRoleModule,
     PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.register({
       secret:process.env.JWT_SECRET||'G1971g',
@@ -17,10 +24,10 @@ import { AuthResolvers } from './auth.resolvers';
         expiresIn: '7d',
       },
     }),
-    UserModule,
   ],
-  providers: [AuthService, AuthResolvers, JwtStrategy],
+  providers: [AuthService, AuthResolvers,JwtStrategy,RolesGuard],
   controllers: [AuthController],
+  exports:[PassportModule,JwtModule]
 })
 export class AuthModule {
   // public configure(consumer: MiddlewareConsumer):void {

@@ -7,22 +7,38 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 // import { UserRoleDeleteInputDto } from './dto/input/user-role-delete.input.dto';
 import { UserRoleUpdateInputDto } from './dto/input/user-role-update.input.dto';
 import {UserRole} from '../entities/user-role.entity';
-import { Repository,Like, DeepPartial, DeleteResult } from 'typeorm';
+import { Repository,Like, SaveOptions, } from 'typeorm';
 import { BaseService } from 'src/base';
-import { UserRoleCreateInputDto } from './dto/input/user-role-create.input.dto';
+import { UserRoleDto } from './dto/user-role.dto';
+// import _ from 'lodash'
+import * as _ from "lodash"
 
 @Injectable()
 export class UserRoleService extends BaseService<UserRole> {
   constructor(
     @Inject('USER_ROLE_REPOSITORY')
-    protected readonly repository: Repository<UserRole>,
+    protected readonly repo: Repository<UserRole>,
   ) {
     super();
   }
 
+  async createRole(data:UserRoleDto,options?:SaveOptions):Promise<UserRole>{
+    return await this.repo.save(data,options)
+  }
+
+  async createRoles(data:UserRoleDto[],options?:SaveOptions):Promise<UserRole[]>{
+   
+      const checked=data.filter(r=>!_.isEmpty(r.roleName))
+      const hasDesc=data.filter(r=>_.isEmpty(r.roleName) && !_.isEmpty(r.description));
+      if (hasDesc && hasDesc.length>0){
+        hasDesc.forEach(r=>r.roleName= r.description);
+      }
+    
+    return await this.repo.save([...checked,...hasDesc],options)
+  }
   public async checkVersion(id: number): Promise<UserRole | undefined> {
     try {
-      return await this.repository.findOne( id,{
+      return await this.repo.findOne( id,{
         select: ['version'],
       });
     } catch (error) {
@@ -32,7 +48,7 @@ export class UserRoleService extends BaseService<UserRole> {
 
   public async userRole(id: number): Promise<UserRole | undefined> {
     try {
-      return await this.repository.findOne({
+      return await this.repo.findOne({
         where: { id },
       });
     } catch (error) {
@@ -47,11 +63,11 @@ export class UserRoleService extends BaseService<UserRole> {
   ): Promise<UserRole[]> {
     try {
       const filter = `%${textFilter}%`;
-      return await this.repository.find({
+      return await this.repo.find({
         take: paging,
         skip: (page - 1) * paging,
         where: {
-          userRoleName: Like( filter),
+          roleName: Like( filter),
         },
         order: {id:'ASC'},
       });
@@ -60,17 +76,17 @@ export class UserRoleService extends BaseService<UserRole> {
     }
   }
 
-  async userRoles(userRoleNames: string[]): Promise<UserRole[]> {
+  async findRolesByNames(roleNames: string[]): Promise<UserRole[]> {
     try {
       let whereCondition = {};
-      if (userRoleNames.length > 0) {
-        whereCondition = userRoleNames.map((userRoleName: string) => {
+      if (roleNames.length > 0) {
+        whereCondition = roleNames.map((roleName: string) => {
           return {
-            name:userRoleName,
+            roleName
           };
         });
       }
-      return await this.repository.find({
+      return await this.repo.find({
         where: whereCondition,
       });
     } catch (error) {
@@ -78,10 +94,10 @@ export class UserRoleService extends BaseService<UserRole> {
     }
   }
 
-  async userRoleNameFind(name: string): Promise<UserRole> {
+  async userRoleNameFind(roleName: string): Promise<UserRole> {
     try {
-      return await this.repository.findOne({
-        where: { name },
+      return await this.repo.findOne({
+        where: { roleName },
       });
     } catch (error) {
       throw new BadRequestException();

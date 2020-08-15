@@ -6,7 +6,7 @@ import { UserRoleResolver } from './user-role.resolver';
 import { UserRoleService } from './user-role.service';
 
 @Module({
-  imports: [DatabaseModule, UserModule],
+  imports: [DatabaseModule, ],
   providers: [UserRoleService, 
     UserRoleResolver,
      ...userRoleProviders],

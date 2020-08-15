@@ -1,5 +1,7 @@
+import { IPayloadUser } from "./user.interface";
+
 export interface IJwtPayload {
-  readonly sub: number;
-  readonly roles: string[];
+  sub: number,
+  user:IPayloadUser,
 
 }

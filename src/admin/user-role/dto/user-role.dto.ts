@@ -1,4 +1,4 @@
-import { Field, Int,  InputType } from '@nestjs/graphql';
+import { Field,   InputType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
 @InputType()
@@ -7,9 +7,9 @@ export class UserRoleDto {
   // id: number;
   @Field(() => String, { nullable: false }) 
   @ApiProperty()
-  name: string;
+  roleName?: string;
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
-  description: string;
+  description?: string;
   // @Field(() => Int, { nullable: false }) version: number;
 }

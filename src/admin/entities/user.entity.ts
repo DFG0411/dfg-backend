@@ -1,41 +1,38 @@
 import {
-  IsArray,
   IsEmail,
   IsString,
-  IsDate,
   MinLength,
   IsOptional,
-  IsNumber,
+  IsMobilePhone,
 } from 'class-validator';
 import {
   Entity,
   Column,
-  BeforeInsert,
-  BeforeUpdate,
   JoinTable,
   ManyToMany,
-  PrimaryGeneratedColumn,
+  RelationId,
+  Index,
 } from 'typeorm';
-// import { Roles } from 'decorators/roles.decorator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { SupperEntity } from '../../base';
-import { hashSync, } from 'bcryptjs';
+import { Type } from 'class-transformer';
 import { UserRole } from './user-role.entity';
 import { ObjectType, Field } from '@nestjs/graphql';
 
-
 @ObjectType()
-@Entity({ name: 'user' })
+@Entity({ name: 'users' })
+@Index(['userName'])
+@Index(['email'])
 export class User extends SupperEntity {
-	@PrimaryGeneratedColumn()
-	@Field()
-	id: number;
+  // @PrimaryGeneratedColumn()
+  // @Field()
+  // id: number;
 
   @ApiProperty()
   @IsString()
   @Column({ unique: true })
   @Field()
-  name: string;
+  userName: string;
 
   @ApiProperty()
   @IsEmail()
@@ -45,7 +42,7 @@ export class User extends SupperEntity {
 
   @ApiPropertyOptional()
   @IsOptional()
-  @IsDate()
+  @Type(() => Date)
   @Column({ nullable: true })
   @Field()
   birthed?: Date;
@@ -73,15 +70,14 @@ export class User extends SupperEntity {
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  @Column({ nullable: true, length: 5, default: 'man' })
+  @Column({ nullable: true, length: 5, default: 'male' })
   @Field()
   gender: string;
 
   @ApiPropertyOptional()
   @IsOptional()
-  @IsString()
-  @IsNumber()
-  @Column({ nullable: true})
+  @IsMobilePhone('zh-CN')
+  @Column({ nullable: true })
   @Field()
   phone: string;
 
@@ -91,43 +87,51 @@ export class User extends SupperEntity {
   @Field()
   password: string;
 
+  // @RelationId((self:User)=>self.roles)
+  // roleIds:number[]
+
   @ApiProperty()
-  @IsArray()
-  @ManyToMany(() => UserRole, (role) => role.users, {
-    cascade: true,
+  // @IsArray({always:false})
+  // @OneToMany(() => UserRole,role=>role.user,{eager:true})
+  @ManyToMany(() => UserRole, {
+    // onUpdate: 'CASCADE',
+    // onDelete: 'CASCADE',
+    eager: true,
   })
-  @Field(()=>[UserRole])
-  @JoinTable()
-  // @Field(() => [UserRoleEntity])
+  @Field(() => [UserRole])
+  // @JoinColumn({name:'roles', referencedColumnName: 'roleName' })
+  // @JoinColumn({name:'roles'})
+  @JoinTable({ name: 'user_roles' })
   roles: UserRole[];
-  @Field()
-  @Column({ nullable: true})
-  avatar: string
-  
-  @Column({ nullable: true,default:false})
-  isVerified: boolean
-  
-	@Column({ nullable: true,default:false})
-	isOnline: boolean
 
-  @Column({ nullable: true,default:false})
-  isLocked: boolean
-  
   @Field()
-	@Column({ nullable: true,default:false})
-	lockReason: string
+  @Column({ nullable: true })
+  avatar: string;
 
-	@Field()
-	@Column({ nullable: true,default:false})
-  isActive: boolean
-  
+  @Column({ nullable: true, default: false })
+  isVerified: boolean;
+
+  @Column({ nullable: true, default: false })
+  isOnline: boolean;
+
+  @Column({ nullable: true, default: false })
+  isLocked: boolean;
+
   @Field()
-	@Column({ nullable: true})
-	resetPasswordToken: string
+  @Column({ nullable: true, default: false })
+  lockReason: string;
 
-	@Field()
-	@Column({ nullable: true})
-	resetPasswordExpires: number
+  @Field()
+  @Column({ nullable: true, default: false })
+  isActive: boolean;
+
+  @Field()
+  @Column({ nullable: true })
+  resetPasswordToken: string;
+
+  @Field()
+  @Column({ nullable: true })
+  resetPasswordExpires: number;
   // @BeforeInsert()
   // @BeforeUpdate()
   // hashPassword(): void {

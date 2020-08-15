@@ -14,6 +14,9 @@ import { UserRoleModule } from './admin/user-role/user-role.module';
 import { SessionModule } from './admin/session/session.module';
 import { AuthModule } from './admin/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+// import { PassportModule } from '@nestjs/passport';
+// import { JwtModule } from '@nestjs/jwt';
+// import { JwtStrategy } from './admin/auth/passport/jwt.strategy';
 @Module({
   imports: [
     DatabaseModule,
@@ -23,9 +26,9 @@ import { ConfigModule } from '@nestjs/config';
     HistoryModule,
     StockTakingModule,
     MoModule,
-    UserModule,
-    UserRoleModule,
-    SessionModule,
+    // UserModule,
+    // UserRoleModule,
+    // SessionModule,
     AuthModule,
     ConfigModule.forRoot({isGlobal:true}),
     GraphQLModule.forRoot({
@@ -36,8 +39,10 @@ import { ConfigModule } from '@nestjs/config';
       // formatError: graphqlError,
       installSubscriptionHandlers: true,
     }),
+  
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,],
+  exports:[]
 })
 export class AppModule {}

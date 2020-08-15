@@ -5,14 +5,13 @@
 input CreateUserDto {
   firstName: String
   lastName: String
-  name: String!
+  userName: String!
   email: String
   phone: String
   title: String
   gender: String = "man"
   password: String!
   birthed: DateTime
-  roles: [UserRoleDto!]!
 }
 
 """
@@ -63,13 +62,10 @@ type TokenDto {
 input UpdateUserDto {
   firstName: String
   lastName: String
-  name: String
-  email: String
   phone: String
   title: String
   gender: String
   birthed: DateTime
-  roles: [UserRoleDto!]
 }
 
 type User {
@@ -77,7 +73,7 @@ type User {
   version: Float!
   cratedAt: DateTime!
   updatedAt: DateTime!
-  name: String!
+  userName: String!
   email: String!
   birthed: DateTime!
   firstName: String!
@@ -95,7 +91,7 @@ type User {
 }
 
 input UserLoginDto {
-  name: String!
+  userName: String!
   password: String!
 }
 
@@ -104,13 +100,12 @@ type UserRole {
   version: Float!
   cratedAt: DateTime!
   updatedAt: DateTime!
-  name: String!
+  roleName: String!
   description: String!
-  users: User!
 }
 
 input UserRoleCreateInputDto {
-  name: String!
+  roleName: String!
   description: String
 }
 
@@ -119,14 +114,9 @@ input UserRoleDeleteInputDto {
   version: Int!
 }
 
-input UserRoleDto {
-  name: String!
-  description: String
-}
-
 input UserRoleUpdateInputDto {
   id: Int!
-  userRoleName: String
+  roleName: String
   userRoleDescription: String
   version: Int!
 }

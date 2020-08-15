@@ -1,22 +1,23 @@
-import { Column, Entity, ManyToMany } from 'typeorm';
-import { User } from './user.entity';
+import { Column, Entity, ManyToMany, ManyToOne, Index } from 'typeorm';
 import { SupperEntity } from '../../base';
 import { ObjectType, Field, } from '@nestjs/graphql';
+import { User } from './user.entity';
 // import { ObjectType, Field } from '@nestjs/graphql';
 
-@Entity({ name: 'user_role' })
+@Entity({ name: 'roles' })
+@Index(['roleName'])
 @ObjectType()
 // @InputType()
 export class UserRole extends SupperEntity {
   @Column({ nullable: false, unique: true })
   @Field()
-  name: string;
+  roleName: string;
   @Column({ nullable: true })
   @Field()
   description: string;
 
-  /** One-to-many */
-  @ManyToMany(() => User, (user) => user.roles)
-  @Field(() => User)
-  users: User[];
+  // @ManyToOne(()=>User)
+  // user:User
+  @ManyToMany(()=>User)
+  users:User[];
 }

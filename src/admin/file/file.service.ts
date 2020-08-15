@@ -10,7 +10,7 @@ import * as uuid from 'uuid';
 export class FileService extends BaseService<File> {
   constructor(
     @Inject('FILE_MODEL_TOKEN')
-    protected readonly repository: Repository<File>,
+    protected readonly repo: Repository<File>,
   ) 
   {
    super()

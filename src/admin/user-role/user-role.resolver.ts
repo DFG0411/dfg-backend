@@ -49,7 +49,7 @@ export class UserRoleResolver {
       'find roles by names',
   })
   async userRoles(@Args() { userRoleNames }: UserRolesArgsDto):Promise<UserRole[]> {
-    return await this.userRoleService.userRoles(userRoleNames);
+    return await this.userRoleService.findRolesByNames(userRoleNames);
   }
 
   @Mutation(() => UserRole)
