@@ -27,7 +27,7 @@ export class AuthService {
     const { userName, password } = loginDto;
     const user: User = await this.usersService.findOne({ userName },{relations:['roles']});
     // console.log('username:'+userName)
-    console.log('user:'+JSON.stringify (user));
+    // console.log('user:'+JSON.stringify (user));
     // console.log('user.roles:'+JSON.stringify (user.roles));
     if (!user || user.password == '' || !compareSync(password, user.password)) {
       throw new UnauthorizedException('Login failed.');

@@ -17,7 +17,7 @@ export class CreateUserDto {
   email: string;
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
-  phone?: string;
+  mobile?: string;
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
   title?: string;
@@ -53,7 +53,7 @@ export class UpdateUserDto {
   // password: string;
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
-  phone?: string;
+  mobile?: string;
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
   title?: string;
@@ -102,7 +102,7 @@ export class CreateUserWithRolesDto {
   email: string;
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
-  phone?: string;
+  mobile?: string;
   @Field(() => String, { nullable: true }) 
   @ApiProperty()
   title?: string;

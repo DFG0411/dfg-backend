@@ -108,6 +108,7 @@ export class UserService extends BaseService<User> {
   }
 
   async assignRoles(id: number, roles: DeepPartial<UserRole>[]): Promise<User> {
-    return await super.patch(id, { roles });
+    const parsedRoles=await this.parseRoles(roles); 
+    return await super.patch(id, { roles:parsedRoles });
   }
 }

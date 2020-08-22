@@ -15,10 +15,12 @@ export class AuthController {
   @Post('login')
   async login(@Body() user: UserLoginDto): Promise<TokenDto> {
     const token = await this.authService.login(user);
+    // console.log('login ing')
     return {  token };
   }
   @Post('register')
   async register(@Body() user: CreateUserDto) : Promise<TokenDto> {
+    // console.log('register data:'+JSON.stringify(user));
     const token = await this.authService.register(user);
     return {  token };
   }

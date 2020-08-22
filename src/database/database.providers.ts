@@ -23,13 +23,14 @@ export const databaseProviders = [
         entities: ['dist/app/entities/**/*.entity.js'],
         synchronize: false,
         logging: [/*'query',*/ 'error'],
+        connectionTimeout:60000,
         extra: {
           driver: sqlDriver,
           options: {
             trustedConnection: true,
             encrypt: false,
             enableArithAbort: true,
-            timeout: 30000,
+            timeout: 60000,
           },
         },
         // options: { tdsVersion: '7_1' ,encrypt:false,enableArithAbort:true,},

@@ -7,7 +7,7 @@ input CreateUserDto {
   lastName: String
   userName: String!
   email: String
-  phone: String
+  mobile: String
   title: String
   gender: String = "man"
   password: String!
@@ -62,7 +62,7 @@ type TokenDto {
 input UpdateUserDto {
   firstName: String
   lastName: String
-  phone: String
+  mobile: String
   title: String
   gender: String
   birthed: DateTime
@@ -80,7 +80,7 @@ type User {
   lastName: String!
   title: String!
   gender: String!
-  phone: String!
+  mobile: String!
   password: String!
   roles: [UserRole!]!
   avatar: String!

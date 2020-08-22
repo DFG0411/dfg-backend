@@ -12,6 +12,7 @@ import {
   ManyToMany,
   RelationId,
   Index,
+  
 } from 'typeorm';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { SupperEntity } from '../../base';
@@ -79,7 +80,7 @@ export class User extends SupperEntity {
   @IsMobilePhone('zh-CN')
   @Column({ nullable: true })
   @Field()
-  phone: string;
+  mobile: string;
 
   @ApiProperty()
   @MinLength(7)
@@ -107,6 +108,34 @@ export class User extends SupperEntity {
   @Field()
   @Column({ nullable: true })
   avatar: string;
+
+  @Field()
+  @Column({ nullable: true })
+  signature: string;
+  
+  @Field()
+  @Column({ nullable: true })
+  group: string;
+
+  @Field()
+  @Column({ nullable: true })
+  notifications: number;
+
+  @Field()
+  @Column({ nullable: true ,default:'China'})
+  country: string;
+
+  @Field()
+  @Column({type:"simple-json", nullable: true })
+  province: {key:string,label:string};
+
+  @Field()
+  @Column({type:"simple-json", nullable: true })
+  city: {key:string,label:string};
+
+  @Field()
+  @Column({ nullable: true ,default:'China'})
+  address: string;
 
   @Column({ nullable: true, default: false })
   isVerified: boolean;
