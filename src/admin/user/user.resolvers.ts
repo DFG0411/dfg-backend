@@ -45,7 +45,7 @@ export class UserResolvers {
     return await this.userService.patch(id,data);
   }
   @Mutation(()=>Number)
-  async deleteUser(@Args('id') id:number):Promise<number>{
+  async deleteUser(@Args('id') id:number):Promise<number|string>{
     return await this.userService.delete(id);
   }
   

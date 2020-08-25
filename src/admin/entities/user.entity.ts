@@ -18,7 +18,8 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { SupperEntity } from '../../base';
 import { Type } from 'class-transformer';
 import { UserRole } from './user-role.entity';
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Scalar } from '@nestjs/graphql';
+import GraphQLJSON from 'graphql-type-json';
 
 @ObjectType()
 @Entity({ name: 'users' })
@@ -53,13 +54,13 @@ export class User extends SupperEntity {
   @IsString()
   @Column({ nullable: true })
   @Field()
-  firstName: string;
+  firstName?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @Column({ nullable: true })
   @Field()
-  lastName: string;
+  lastName?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -67,6 +68,13 @@ export class User extends SupperEntity {
   @Column({ nullable: true })
   @Field()
   title?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Column({ nullable: true })
+  @Field()
+  profile?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -125,16 +133,16 @@ export class User extends SupperEntity {
   @Column({ nullable: true ,default:'China'})
   country: string;
 
-  @Field()
-  @Column({type:"simple-json", nullable: true })
-  province: {key:string,label:string};
+  @Field(()=>GraphQLJSON)
+  @Column({type:"simple-json", nullable: true,default:{key:''} })
+  province: {id:number,name:string};
+
+  @Field(()=>GraphQLJSON)
+  @Column({type:"simple-json", nullable: true,default:{key:''}  })
+  city: {id:number,name:string};
 
   @Field()
-  @Column({type:"simple-json", nullable: true })
-  city: {key:string,label:string};
-
-  @Field()
-  @Column({ nullable: true ,default:'China'})
+  @Column({ nullable: true })
   address: string;
 
   @Column({ nullable: true, default: false })

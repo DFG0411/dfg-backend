@@ -132,7 +132,7 @@ export class UserRoleService extends BaseService<UserRole> {
   }
 
   // @OptimisticLocking(false)
-  async userRoleDelete(id: number): Promise<number> {
+  async userRoleDelete(id: number|string): Promise<number|string> {
     try {
       // const { id, version } = data;
       return super.delete(id);

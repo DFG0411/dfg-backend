@@ -19,7 +19,7 @@ export class BaseService<T extends BaseEntity> {
   }
 
   public async findOneById(
-    id: number,
+    id: number|string,
     options?: FindOneOptions<T>,
   ): Promise<T> {
     return await this.repo.findOne(id, options);
@@ -53,7 +53,7 @@ export class BaseService<T extends BaseEntity> {
    * @param data
    */
   public async update(
-    id: number,
+    id: number |string,
     data: DeepPartial<T>,
     options?: SaveOptions,
   ): Promise<T> {
@@ -72,7 +72,7 @@ export class BaseService<T extends BaseEntity> {
    * @param id
    * @param data
    */
-  public async patch(id: number, data: DeepPartial<T>): Promise<T> {
+  public async patch(id: number|string, data: DeepPartial<T>): Promise<T> {
     const entity: T = await this.findOneById(id);
     if (!entity) {
       throw new BadRequestException('Data not exists!');
@@ -82,7 +82,7 @@ export class BaseService<T extends BaseEntity> {
     return await this.repo.save({ ...entity, ...data });
   }
 
-  public async delete(id: number): Promise<number> {
+  public async delete(id: number|string): Promise<number|string> {
     try {
       // const { id, version } = data;
       await this.repo.delete(id);
@@ -93,7 +93,7 @@ export class BaseService<T extends BaseEntity> {
       );
     }
   }
-  public async softDelete(id: number): Promise<number> {
+  public async softDelete(id: number|string): Promise<number|string> {
     try {
       // const { id, version } = data;
       await this.repo.softDelete(id);

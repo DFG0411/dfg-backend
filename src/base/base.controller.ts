@@ -13,7 +13,7 @@ export class BaseController<T extends BaseEntity> {
 	}
 
 	@Get('/:id')
-	public async findOne(@Param('id') id: number) : Promise<T>{
+	public async findOne(@Param('id') id: number|string) : Promise<T>{
 		return this.service.findOneById(id);
 	}
 
@@ -24,17 +24,17 @@ export class BaseController<T extends BaseEntity> {
 
 	@Put('/:id')
 	// @ApiBody({type: this.dto})
-	public async update(@Param('id') id: number, @Body() data: DeepPartial<T>): Promise<T> {
+	public async update(@Param('id') id: number|string, @Body() data: DeepPartial<T>): Promise<T> {
 		return this.service.update(id, data);
 	}
 
 	@Patch('/:id')
-	public async patch(@Param('id') id: number, @Body() data: DeepPartial<T>): Promise<T> {
+	public async patch(@Param('id') id: number|string, @Body() data: DeepPartial<T>): Promise<T> {
 		return this.service.patch(id, data);
 	}
 
 	@Delete('/:id')
-	public async delete(@Param('id') id: number): Promise<number> {
+	public async delete(@Param('id') id: number|string): Promise<number|string> {
 		return await this.service.delete(id);
 		// return id;
 	}

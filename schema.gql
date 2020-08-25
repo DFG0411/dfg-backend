@@ -19,6 +19,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
 type Mutation {
   updateUser(data: UpdateUserDto!, id: Float!): User!
   patchUser(data: UpdateUserDto!, id: Float!): User!
@@ -79,11 +84,19 @@ type User {
   firstName: String!
   lastName: String!
   title: String!
+  profile: String!
   gender: String!
   mobile: String!
   password: String!
   roles: [UserRole!]!
   avatar: String!
+  signature: String!
+  group: String!
+  notifications: Float!
+  country: String!
+  province: JSON!
+  city: JSON!
+  address: String!
   lockReason: String!
   isActive: Boolean!
   resetPasswordToken: String!

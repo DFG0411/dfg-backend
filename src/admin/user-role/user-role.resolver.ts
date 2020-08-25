@@ -63,7 +63,7 @@ export class UserRoleResolver {
   }
 
   @Mutation(() => Int)
-  async userRoleDelete(@Args('data') data: UserRoleDeleteInputDto):Promise<number> {
+  async userRoleDelete(@Args('data') data: UserRoleDeleteInputDto):Promise<number|string> {
     return await this.userRoleService.userRoleDelete(data.id);
   }
 }
