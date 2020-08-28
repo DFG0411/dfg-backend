@@ -1,4 +1,4 @@
-import {Body, Controller,  Param,  Patch, Put, UseGuards, Post} from '@nestjs/common';
+import {Body, Controller,  Param,  Patch, Put, UseGuards, Post, Get} from '@nestjs/common';
 // import {AuthGuard} from '@nestjs/passport';
 // import * as _ from 'lodash';
 
@@ -20,6 +20,13 @@ export class UserController extends BaseController<User> {
 	constructor(protected service: UserService) {
 		super();
 	}
+	@Get('/:id')
+	// @Roles('admin')
+	@ApiParam({name:'id',type:Number})
+	// @ApiBody({type: CreateUserDto})
+	public async findOne( @Param('id') id: number/*, @Body() data: UpdateUserDto*/): Promise<User> {
+		return this.service.findOneById(id);
+	}
 	@Put('/:id')
 	@Roles('admin')
 	@ApiParam({name:'id',type:Number})
@@ -29,7 +36,7 @@ export class UserController extends BaseController<User> {
 	}
 	
 	@Patch('/:id')
-	@Roles('admin')
+	// @Roles('admin')
 	@ApiParam({name:'id',type:Number})
 	@ApiBody({type: CreateUserDto})
 	public async patch(@Param('id') id: number, @Body() data: UpdateUserDto): Promise<User> {
