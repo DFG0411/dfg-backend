@@ -32,7 +32,8 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-src/modules/database/database.providers.ts
+
+
 .env.develop
 .env.development
 .env.production
