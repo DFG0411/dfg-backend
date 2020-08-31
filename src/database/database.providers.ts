@@ -18,7 +18,7 @@ export const databaseProviders = [
         port: 1433,
         username: 'it18',
         password: '11',
-        domain: 'dfg.com.cn',
+        domain: 'DFG.COM.CN',
         database: 'UFDATA_800_2017',
         entities: ['dist/app/entities/**/*.entity.js'],
         synchronize: false,
