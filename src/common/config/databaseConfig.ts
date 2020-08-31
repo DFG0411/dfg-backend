@@ -32,7 +32,7 @@ export const databaseConfig: IDatabaseConfig = {
     username: db_username || '',
     password: db_password || '',
     database: db_database || '',
-    host: db_host || '127.0.0.1',
+    host: db_host || '10.151.40.107',
     port: Number(db_port) || 5432,
     synchronize: db_synchronize=='true' ,
     logging:db_logging?db_logging.split(',') as LoggerOptions:[] as LoggerOptions
