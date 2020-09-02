@@ -134,11 +134,11 @@ export class User extends SupperEntity {
   country: string;
 
   @Field(()=>GraphQLJSON)
-  @Column({type:"simple-json", nullable: true,default:{key:''} })
+  @Column({type:"simple-json", nullable: true})
   province: {id:number,name:string};
 
   @Field(()=>GraphQLJSON)
-  @Column({type:"simple-json", nullable: true,default:{key:''}  })
+  @Column({type:"simple-json", nullable: true })
   city: {id:number,name:string};
 
   @Field()
