@@ -32,10 +32,15 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-src/modules/database/database.providers.ts
+
+
 .env.develop
 .env.development
 .env.production
 .env
 
+<<<<<<< HEAD
 schema.gql
+=======
+database.providers.ts
+>>>>>>> 2f558e180b57326b10ab51bbb04a8d72eb307350
