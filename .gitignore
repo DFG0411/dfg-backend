@@ -38,3 +38,4 @@ src/modules/database/database.providers.ts
 .env.production
 .env
 
+schema.gql

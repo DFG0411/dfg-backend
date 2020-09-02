@@ -1,4 +1,4 @@
-import { createConnection, Connection } from 'typeorm';
+import { createConnection, Connection, Any } from 'typeorm';
 import { databaseConfig } from '../common/config/databaseConfig';
 import { IDatabaseConfig } from '../common/config/interfaces/IDatabase';
 
@@ -7,21 +7,24 @@ import { SqlClient } from 'msnodesqlv8';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sqlDriver: SqlClient = require('msnodesqlv8');
 
+// Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true
+// Driver=msnodesqlv8;Server=(local)\INSTANCE;Database=database;UID=DOMAIN\username;PWD=password;Encrypt=true
+
+
 export const databaseProviders = [
   {
     provide: 'APPCONNECTION',
-    useFactory: async (): Promise<Connection> =>
+    useFactory: async () =>
       await createConnection({
         type: 'mssql',
-        name: 'AppConnection',
         host: '10.151.80.151',
         port: 1433,
-        username: 'it08',
-        password: 'G1971g',
-        domain: 'dfg.com.cn',
+        username: 'it101',
+        password: '101101',
+        domain: 'dfg',
         database: 'UFDATA_800_2017',
-        entities: ['dist/app/entities/**/*.entity.js'],
-        synchronize: false,
+        entities: ['dist/app/entities/**/*.entity{.ts,.js}'],
+        synchronize: false,        
         logging: [/*'query',*/ 'error'],
         connectionTimeout:60000,
         extra: {
@@ -31,11 +34,15 @@ export const databaseProviders = [
             encrypt: false,
             enableArithAbort: true,
             timeout: 60000,
-          },
-        },
-        // options: { tdsVersion: '7_1' ,encrypt:false,enableArithAbort:true,},
-      }),
-  },
+            options: { tdsVersion: '7_1' ,encrypt:false},
+      },
+    },
+  }),
+},
+
+
+
+
   {
     provide: 'ADMCONNECTION',
     useFactory: async (): Promise<Connection> => {
