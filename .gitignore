@@ -39,6 +39,7 @@ lerna-debug.log*
 .env.production
 .env
 
-schema.gql
 
 database.providers.ts
+schema.gql
+
