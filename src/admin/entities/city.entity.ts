@@ -1,3 +1,4 @@
+
 import { Entity, Column, BaseEntity, PrimaryColumn} from 'typeorm';
 //import {  } from '../../base';
 import { Field } from '@nestjs/graphql';
@@ -24,4 +25,5 @@ export class City extends BaseEntity{
     @Field()
     @Column({ nullable: false })
     pid:string
+
 }

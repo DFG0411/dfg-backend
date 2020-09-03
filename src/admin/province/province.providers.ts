@@ -1,13 +1,12 @@
 // import { Database } from 'arangojs';
 import {Connection, Repository} from 'typeorm';
-import {City} from '../entities/city.entity';
+import {Province} from '../entities/province.entity';
 
-
-export const cityProviders = [
+export const ProvinceProviders = [
   {
-    provide: 'CITY_MODEL_TOKEN',
+    provide: 'PROVINCE_MODEL_TOKEN',
     inject: ['ADMCONNECTION'],
-    useFactory: (connection: Connection) :Repository<City>=>  connection.getRepository(City),
+    useFactory: (connection: Connection) :Repository<Province>=>  connection.getRepository(Province),
 
   },
   // {
