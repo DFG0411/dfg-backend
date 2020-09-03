@@ -1,9 +1,9 @@
 // import { Database } from 'arangojs';
 import {Connection, Repository} from 'typeorm';
 import {City} from '../entities/city.entity';
-import { createInferTypeNode } from 'typescript';
 
-export const CityProviders = [
+
+export const cityProviders = [
   {
     provide: 'CITY_MODEL_TOKEN',
     inject: ['ADMCONNECTION'],
