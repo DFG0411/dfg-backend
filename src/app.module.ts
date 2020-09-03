@@ -9,15 +9,12 @@ import { HourRateModule } from './app/hourrate/hourrate.module';
 import { StockTakingModule } from './app/stocktaking/stocktaking.module';
 import { MoModule } from './app/mo/mo.module';
 import { GraphQLModule } from '@nestjs/graphql';
-import { UserModule } from './admin/user/user.module';
-import { UserRoleModule } from './admin/user-role/user-role.module';
-import { SessionModule } from './admin/session/session.module';
+
+// import { SessionModule } from './admin/session/session.module';
 import { AuthModule } from './admin/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CityModule } from './admin/city/city.module';
-// import { PassportModule } from '@nestjs/passport';
-// import { JwtModule } from '@nestjs/jwt';
-// import { JwtStrategy } from './admin/auth/passport/jwt.strategy';
+import { ProvinceModule } from './admin/province/province.module';
 @Module({
   imports: [
     DatabaseModule,
@@ -27,9 +24,10 @@ import { CityModule } from './admin/city/city.module';
     HistoryModule,
     StockTakingModule,
     MoModule,
-    UserModule,
-    UserRoleModule,
+    // UserModule,
+    // UserRoleModule,
     CityModule,
+    ProvinceModule,
     // SessionModule,
     AuthModule,
     ConfigModule.forRoot({isGlobal:true}),
