@@ -79,7 +79,7 @@ export class User extends SupperEntity {
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  @Column({ nullable: true, length: 5, default: 'male' })
+  @Column({ nullable: true, length: 6, default: 'male' })
   @Field()
   gender: string;
 

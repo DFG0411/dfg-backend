@@ -4,19 +4,24 @@ import { Field } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({
-    name:'provinces',
+    name:'city',
     orderBy:{id:'ASC'}
 }
 )
-export class Province extends BaseEntity{
+export class City extends BaseEntity{
     @Field()
   //  @PrimaryGeneratedColumn()
   @ApiProperty()
   @PrimaryColumn({ nullable: false })  
   id:string
 
-  @ApiProperty()
+    @ApiProperty()
   @Field()
     @Column({ nullable: false })
     name:string
+
+    @ApiProperty()
+    @Field()
+      @Column({ nullable: false })
+      pid:string
 }
