@@ -3,7 +3,7 @@ import { SearchFindCondition } from '../../misc/findcondition';
 import { MoEntity } from '../entities/mo.entity';
 import { MoService } from './mo.service';
 
-@Controller('/api/mo')
+@Controller('/mo')
 export class MoController {
   constructor(protected service: MoService) {}
   @Get()
