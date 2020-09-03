@@ -3,16 +3,34 @@ import {Body, Controller,  Param,  Patch, Put, UseGuards, Post, Get} from '@nest
 // import * as _ from 'lodash';
 
 import {ApiBearerAuth, ApiTags, ApiParam, ApiBody,PartialType} from '@nestjs/swagger';
-import {CityService} from './city.service';
-import {BaseController} from '../../base';
-import { City } from '../entities/city.entity';
-
+import { CityService } from './city.service';
+import {City} from '../entities/city.entity';
+import { DeepPartial } from 'typeorm';
+// import { CreateUserDto, UpdateUserDto, CreateUserWithRolesDto } from './dto/user.input';
+// import { RolesGuard } from '../auth/guards/roles.guard';
+// import { UserRoleDto } from '../user-role/dto/user-role.dto';
 @ApiTags('city')
 @ApiBearerAuth()
-@Controller('city')
-export class CityController extends BaseController<City> {
+// @UseGuards(RolesGuard)
+@Controller('cities')
+export class CityController{
 
 	constructor(protected service: CityService) {
-		super();
 	}
+	@Get()
+	async findAll():Promise<City[]>{
+		return this.service.findAll();
+	}
+	@Get('pid/:id')
+	async findByPid(@Param('id') pid:string):Promise<City[]>{
+		// console.log('ctl pid:'+pid)
+		return this.service.findByPid(pid);
+	}
+
+	@Get(':id')
+	async findOne(id:string):Promise<City>{
+		return this.service.findOneById(id);
+	}
+
 }
+

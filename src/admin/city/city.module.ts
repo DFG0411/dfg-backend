@@ -1,14 +1,17 @@
-import { Module, } from '@nestjs/common';
-import { DatabaseModule } from '../../database/database.module';
-import {  CityController } from './city.controller';
-import { CityService } from './city.service';
 
-import { CityProviders } from './city.providers';
+import { Module, forwardRef } from '@nestjs/common';
+import { DatabaseModule } from '../../database/database.module';
+import { CityController } from './city.controller';
+import { CityService } from './city.service';
+import { cityProviders } from './city.providers';
+
 
 @Module({
   imports: [DatabaseModule],
   controllers: [CityController],
-  providers: [...CityProviders ,CityService],
+
+  providers: [...cityProviders ,CityService],
+
   exports: [],
 })
 export class CityModule {
