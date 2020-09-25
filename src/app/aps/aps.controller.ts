@@ -20,7 +20,7 @@ import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { StockTakingFindCondition } from '../../misc/findcondition';
 import { StockTaking } from '../entities/stocktaking.entity';
 import { DeepPartial } from 'typeorm';
-@Controller('/api/aps')
+@Controller('/api')
 export class ApsController {
   constructor(protected service: ApsService) {}
   @Get()
