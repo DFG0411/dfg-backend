@@ -13,7 +13,7 @@ import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { StockTakingFindCondition } from '../../misc/findcondition';
 import { StockTaking } from '../entities/stocktaking.entity';
 import { DeepPartial } from 'typeorm';
-@Controller('/api/stocktaking')
+@Controller('/stocktaking')
 export class StockTakingController {
   constructor(protected service: StockTakingService) {}
   @Get()

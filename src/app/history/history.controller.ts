@@ -3,7 +3,7 @@ import { HistoryService } from './history.service';
 import { History } from '../entities/history.entity';
 // import { FindConditions } from 'typeorm/find-options/FindConditions';
 import { SearchFindCondition } from '../../misc/findcondition';
-@Controller('/api/history')
+@Controller('/history')
 export class HistoryController {
   constructor(protected service: HistoryService) {}
   @Get()
