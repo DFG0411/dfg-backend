@@ -16,7 +16,6 @@ import { AuthModule } from './admin/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { ProvinceModule } from './admin/province/province.module';
 import { CityModule } from './admin/city/city.module';
-import { ProvinceModule } from './admin/province/province.module';
 // import { PassportModule } from '@nestjs/passport';
 // import { JwtModule } from '@nestjs/jwt';
 // import { JwtStrategy } from './admin/auth/passport/jwt.strategy';
