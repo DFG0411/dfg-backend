@@ -111,4 +111,7 @@ export class UserService extends BaseService<User> {
     const parsedRoles=await this.parseRoles(roles); 
     return await super.patch(id, { roles:parsedRoles });
   }
+  // async getRoles(id:number):Promise<string[]>{
+  
+  // }
 }

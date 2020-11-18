@@ -82,7 +82,7 @@ export class BomPlanService {
       .orderBy('b.id,pr.opseq')
       .getMany();
 
-    const newChildren = children.map(async child => {
+    const grandChildren = children.map(async child => {
       child.qty = child.unitqty * parent.qty;
       child.lvl = parent.lvl + '.' + child.lvl;
       if (child.childbomid) {
@@ -90,7 +90,7 @@ export class BomPlanService {
       }
       return child;
     });
-    await Promise.all(newChildren).then(childrenTree => {
+    await Promise.all(grandChildren).then(childrenTree => {
       parent.children = childrenTree;
     });
     return parent;
