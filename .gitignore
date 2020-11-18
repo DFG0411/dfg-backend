@@ -42,3 +42,5 @@ lerna-debug.log*
 database.providers.ts
 schema.gql
 
+.tomg-config
+/output

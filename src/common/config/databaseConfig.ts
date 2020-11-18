@@ -12,18 +12,18 @@ console.log(
 
 switch (process.env.NODE_ENV) {
   case 'development':
-    dotenv.config({ path: resolve(__dirname, '../../../.env.development') });
+    dotenv.config({ path: resolve(__dirname, '../../../../.env.development') });
     break;
 
   case 'production':
-    dotenv.config({ path: resolve(__dirname, '../../../.env.production') });
+    dotenv.config({ path: resolve(__dirname, '../../../../.env.production') });
     break;
 
   default:
-    dotenv.config({ path: resolve(__dirname, '../../../.env.development') });
+    dotenv.config({ path: resolve(__dirname, '../../../../.env.development') });
     break;
 }
-
+console.log(resolve(__dirname, '../../../.env.development'))
 const {  db_name,db_host,db_port,db_username,db_password,db_database,db_synchronize,db_logging} = process.env;
  
 

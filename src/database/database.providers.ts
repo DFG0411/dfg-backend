@@ -19,7 +19,7 @@ export const databaseProviders = [
         password: 'G19710406g',
         // domain: 'dfg',
         database: 'UFDATA_800_2017',
-        entities: ['dist/app/entities/**/*.entity{.ts,.js}'],
+        entities: ['dist/src/app/entities/**/*.entity{.ts,.js}'],
         synchronize: false,        
         logging: [/*'query',*/ 'error'],
         connectionTimeout:60000,
@@ -42,11 +42,11 @@ export const databaseProviders = [
     provide: 'ADMCONNECTION',
     useFactory: async (): Promise<Connection> => {
       const config: IDatabaseConfig = databaseConfig;
-      // console.log('env:' +JSON.stringify (config));
+      console.log('env:' +JSON.stringify (config));
       return await createConnection({
         type: 'postgres',
         ...config,
-        entities: ['dist/admin/entities/**/*.entity.js'],
+        entities: ['dist/src/admin/entities/**/*.entity.js'],
       });
     },
   },
