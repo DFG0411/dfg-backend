@@ -20,9 +20,9 @@ export enum Target {
 
 
 @ObjectType()
-@Index("menu_pkey", ["id"], { unique: true })
-@Index("menu_parent_id_idx", ["parent_id"], {})
-@Index("menu_parent_path_idx", ["parent_path"], {})
+// @Index("menu_pkey", ["id"], { unique: true })
+// @Index("menu_parent_id_idx", ["parent_id"], {})
+// @Index("menu_parent_path_idx", ["parent_path"], {})
 @Entity("menu", { schema: "public" })
 export class Menu extends BaseEntity {
   @ApiProperty()

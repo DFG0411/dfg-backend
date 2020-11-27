@@ -22,6 +22,7 @@ export const databaseProviders = [
         entities: ['dist/src/app/entities/**/*.entity{.ts,.js}'],
         synchronize: false,        
         logging: [/*'query',*/ 'error'],
+        cache:true,
         connectionTimeout:60000,
         extra: {
 
