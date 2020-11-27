@@ -18,6 +18,7 @@ export const databaseProviders = [
         password: 'XXX',
         domain: 'XXX',
         database: 'XXX',
+        cache:true,
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: false,
         options: { tdsVersion: '7_1' },
