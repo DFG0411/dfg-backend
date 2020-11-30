@@ -4,7 +4,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { AuthService } from '../auth.service';
 import { IJwtPayload } from '../interfaces/jwt-payload.interface';
-import {User} from '../../entities/user.entity';
+import {User} from '../../../entities/user.entity';
 // import { ModuleRef, ContextIdFactory } from '@nestjs/core';
 
 @Injectable()

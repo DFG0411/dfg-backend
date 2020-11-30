@@ -1,6 +1,6 @@
 // import { Database } from 'arangojs';
 import {Connection, Repository} from 'typeorm';
-import {File} from '../entities/file.entity';
+import {File} from '../../entities/file.entity';
 
 export const fileProviders = [
   {

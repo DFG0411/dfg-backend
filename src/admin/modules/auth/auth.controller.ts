@@ -2,7 +2,7 @@ import {  Controller,  Post,  Get,  Body,  Param,  Req,  Res} from '@nestjs/comm
 
 import { AuthService } from './auth.service';
 import { TokenDto } from './interfaces/token.dto';
-import { Roles } from '../../decorators/roles.decorator';
+import { Roles } from './decorators/roles.decorator';
 import { ApiBearerAuth, ApiTags, ApiParam } from '@nestjs/swagger';
 import { CreateUserDto, UserLoginDto, ResetPasswordDto} from '../user/dto/user.input';
 import { Request, Response } from 'express';

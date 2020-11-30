@@ -4,7 +4,7 @@ import {FileService} from './file.service';
 import { createWriteStream } from 'fs';
 import * as uuid from 'uuid';
 
-import { File } from '../entities/file.entity';
+import { File } from '../../entities/file.entity';
 
 import { ApolloError } from 'apollo-server-core';
 import { extname } from 'path';

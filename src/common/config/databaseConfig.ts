@@ -3,7 +3,7 @@ import { resolve } from 'path';
 // import { Dialect } from 'sequelize/types';
 import { IDatabaseConfig } from './interfaces/IDatabase';
 import { LoggerOptions } from 'typeorm/logger/LoggerOptions';
-
+dotenv.config();
 console.log(
   `\n--------------------------------------- NODE_ENV =`,
   process.env.NODE_ENV,
@@ -12,15 +12,15 @@ console.log(
 
 switch (process.env.NODE_ENV) {
   case 'development':
-    dotenv.config({ path: resolve(__dirname, '../../../../.env.development') });
+    dotenv.config({ path: resolve(__dirname, '../../../.env.development') });
     break;
 
   case 'production':
-    dotenv.config({ path: resolve(__dirname, '../../../../.env.production') });
+    dotenv.config({ path: resolve(__dirname, '../../../.env.production') });
     break;
 
   default:
-    dotenv.config({ path: resolve(__dirname, '../../../../.env.development') });
+    dotenv.config({ path: resolve(__dirname, '../../../.env.development') });
     break;
 }
 console.log(resolve(__dirname, '../../../.env.development'))
