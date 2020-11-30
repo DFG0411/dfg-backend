@@ -1,5 +1,5 @@
 import { Module, forwardRef } from '@nestjs/common';
-import { DatabaseModule } from '../../database/database.module';
+import { DatabaseModule } from '../../../database/database.module';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { UserResolvers } from './user.resolvers';

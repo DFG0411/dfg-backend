@@ -1,8 +1,8 @@
 import { Inject, Injectable, BadRequestException } from '@nestjs/common';
 import { Repository, DeepPartial } from 'typeorm';
 // import { USER_MODEL_TOKEN_MSSQL } from '../server.constants';
-import { BaseService } from '../../base';
-import { User } from '../entities/user.entity';
+import { BaseService } from '../../../base';
+import { User } from '../../entities/user.entity';
 import { hashSync, compareSync } from 'bcryptjs';
 // import { UserLoginDto } from './dto/user.login.dto';
 // import { IToken } from 'src/auth/interfaces/token.interface';
@@ -13,7 +13,7 @@ import {
   CreateUserWithRolesDto,
 } from './dto/user.input';
 import { UserRoleService } from '../user-role/user-role.service';
-import { UserRole } from '../entities/user-role.entity';
+import { UserRole } from '../../entities/user-role.entity';
 import { UserRoleDto } from '../user-role/dto/user-role.dto';
 @Injectable()
 export class UserService extends BaseService<User> {

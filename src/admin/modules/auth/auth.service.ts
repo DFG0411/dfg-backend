@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { IJwtPayload } from './interfaces/jwt-payload.interface';
-import { User } from '../entities/user.entity';
+import { User } from '../../entities/user.entity';
 import {
   UserLoginDto,
   CreateUserDto,

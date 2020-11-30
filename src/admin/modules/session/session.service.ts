@@ -2,7 +2,7 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { SessionCreateInputDto } from './dto/inputs/session-create.input.dto';
 import { SessionUpdateInputDto } from './dto/inputs/session-update.input.dto';
-import {Session} from '../entities/session.entity';
+import {Session} from '../../entities/session.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

@@ -12,7 +12,7 @@ import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { UserService } from './user.service';
 // import { IUser } from './interfaces/user.interface';
 // import { root } from 'rxjs/internal/util/root';
-import { User } from '../entities/user.entity';
+import { User } from '../../entities/user.entity';
 import { CreateUserDto, UpdateUserDto } from './dto/user.input';
 // import { IToken } from 'src/auth/interfaces/token.interface';
 

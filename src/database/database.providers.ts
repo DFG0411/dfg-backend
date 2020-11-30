@@ -19,7 +19,7 @@ export const databaseProviders = [
         password: 'G19710406g',
         // domain: 'dfg',
         database: 'UFDATA_800_2017',
-        entities: ['dist/src/app/entities/**/*.entity{.ts,.js}'],
+        entities: ['dist/app/entities/**/*.entity{.ts,.js}'],
         synchronize: false,        
         logging: [/*'query',*/ 'error'],
         cache:true,
@@ -47,7 +47,7 @@ export const databaseProviders = [
       return await createConnection({
         type: 'postgres',
         ...config,
-        entities: ['dist/src/admin/entities/**/*.entity.js'],
+        entities: ['dist/admin/entities/**/*.entity.js'],
       });
     },
   },
