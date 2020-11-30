@@ -1,4 +1,4 @@
-import {UserRole }from '../entities/user-role.entity';
+import {UserRole }from '../../entities/user-role.entity';
 import { Connection, Repository } from 'typeorm';
 // import {  MSSQL_CONNECTION_TOKEN} from '../server.constants';
 

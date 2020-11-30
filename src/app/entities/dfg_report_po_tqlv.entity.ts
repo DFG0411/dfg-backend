@@ -33,15 +33,15 @@ import {ViewColumn,ViewEntity} from "typeorm";
 export  class DfgReportPoTqlv {
 
     @ViewColumn()
-:number | null;
+	'采购日期':number | null;
 @ViewColumn()
-:string | null;
+'供应商编码':string | null;
 @ViewColumn()
-:string;
+'供应商简称':string;
 @ViewColumn()
-:number | null;
+'采购件数':number | null;
 @ViewColumn()
-:number | null;
+cVenCode:number | null;
 @ViewColumn()
-:number | null;
+cVenName:number | null;
 }

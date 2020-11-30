@@ -1,7 +1,7 @@
 import { Inject, Injectable, BadRequestException } from '@nestjs/common';
 import { Repository,  } from 'typeorm';
 import { FileDto } from './dto/file.input';
-import { File } from '../entities/file.entity';
+import { File } from '../../entities/file.entity';
 import { BaseService } from 'src/base';
 import { extname } from 'path';
 import * as uuid from 'uuid';

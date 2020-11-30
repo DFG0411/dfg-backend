@@ -2,7 +2,7 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { BaseService } from 'src/base';
 import { Repository } from 'typeorm';
 import { Menu } from '../../entities/menu.entity';
-import { UserService } from '../../user/user.service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class MenuService extends BaseService<Menu> {

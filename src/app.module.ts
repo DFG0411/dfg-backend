@@ -13,7 +13,7 @@ import { MoModule } from './app/modules/mo/mo.module';
 // import { GraphQLModule } from '@nestjs/graphql';
 
 // import { SessionModule } from './admin/session/session.module';
-import { AuthModule } from './admin/auth/auth.module';
+import { AuthModule } from './admin/modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { ProvinceModule } from './admin/modules/province/province.module';
 import { CityModule } from './admin/modules/city/city.module';
