@@ -48,48 +48,48 @@ import {ViewColumn,ViewEntity} from "typeorm";
   and YEAR(GETDATE())-YEAR(pm.dPODate)<3`})
 export  class DfgReportPoPricecompare {
 
-    @ViewColumn()
+@ViewColumn()
 id:number;
 @ViewColumn()
-:string;
+'请购单号':string;
 @ViewColumn()
-:string | null;
+'供应商编码':string | null;
 @ViewColumn()
-:string | null;
+'采购单号':string | null;
 @ViewColumn()
-:string | null;
+'供应商':string | null;
 @ViewColumn()
-:string;
+'存货编码':string;
 @ViewColumn()
-:string | null;
+'规格型号':string | null;
 @ViewColumn()
-:string | null;
+'存货分类':string | null;
 @ViewColumn()
-:string | null;
+'存货名称':string | null;
 @ViewColumn()
-:Date;
+'采购日':Date;
 @ViewColumn()
-:Date;
+'最新更新日':Date;
 @ViewColumn()
-:number | null;
+'订单数':number | null;
 @ViewColumn()
-:number | null;
+'已开数':number | null;
 @ViewColumn()
-:number | null;
+'订单价原':number | null;
 @ViewColumn()
-:number | null;
+'订单价本':number | null;
 @ViewColumn()
-:number | null;
+'开均单价原':number | null;
 @ViewColumn()
-:number | null;
+'开均单价本':number | null;
 @ViewColumn()
-:string | null;
+'采购员':string | null;
 @ViewColumn()
-:string | null;
+'请购人':string | null;
 @ViewColumn()
-:string | null;
+'管理号':string | null;
 @ViewColumn()
-:string | null;
+'行关闭人':string | null;
 @ViewColumn()
-:string | null;
+'订单币种':string | null;
 }

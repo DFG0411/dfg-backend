@@ -3,10 +3,10 @@ import {Body, Controller,  Param,  Patch, Put, UseInterceptors, UploadedFile,  P
 import{FileInterceptor} from '@nestjs/platform-express'
 import {ApiBearerAuth, ApiTags, ApiParam, ApiBody,} from '@nestjs/swagger';
 import {FileService} from './file.service';
-import {File} from '../entities/file.entity';
+import {File} from '../../entities/file.entity';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { FileDto } from './dto/file.input';
-import { User } from 'src/admin/auth/decorators/user.decorator';
+import { User } from '../auth/decorators/user.decorator';
 import { createWriteStream } from 'fs';
 
 @ApiTags('files')

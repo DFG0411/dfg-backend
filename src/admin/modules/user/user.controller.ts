@@ -4,8 +4,8 @@ import {Body, Controller,  Param,  Patch, Put, UseGuards, Post, Get} from '@nest
 
 import {ApiBearerAuth, ApiTags, ApiParam, ApiBody,PartialType} from '@nestjs/swagger';
 import {UserService} from './user.service';
-import {User} from '../entities/user.entity';
-import {BaseController} from '../../base';
+import {User} from '../../entities/user.entity';
+import {BaseController} from '../../../base';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { DeepPartial } from 'typeorm';
 import { CreateUserDto, UpdateUserDto, CreateUserWithRolesDto } from './dto/user.input';

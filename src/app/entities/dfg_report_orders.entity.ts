@@ -1,10 +1,9 @@
 
-import { ViewColumn, ViewEntity } from "typeorm";
+import {ViewColumn,ViewEntity} from "typeorm";
 
 
 
-@ViewEntity({
-    expression: `SELECT   YEAR(sm.dDate) AS Y,
+@ViewEntity({expression:`SELECT   YEAR(sm.dDate) AS Y,
 	MONTH(sm.dDate) AS M,   
             Grp AS 品种,
             --CONVERT(DATE,sm.dDate,112) AS dDate,--订单日
@@ -61,53 +60,52 @@ import { ViewColumn, ViewEntity } from "typeorm";
 	----GROUP BY c.cCusAbbName
 
 	----ORDER BY ddate DESC,sd.iQuantity*iNatUnitPrice DESC`})
-export class DfgReportOrders
-{
+export  class DfgReportOrders {
 
     @ViewColumn()
-    y: number | null;
-    @ViewColumn()
-    m: number | null;
-    @ViewColumn()
-    '品种'    : number | null;
-    @ViewColumn()
-    ordersdDate: Date | null;
-    @ViewColumn()
-    dPreMoDate: Date | null;
-    @ViewColumn()
-    dPreDate: Date | null;
-    @ViewColumn()
-    cinvcode: string | null;
-    @ViewColumn()
-    cinvaddcode: string | null;
-    @ViewColumn()
-    iQuantity: number | null;
-    @ViewColumn()
-    iNatUnitPrice: number | null;
-    @ViewColumn()
-    jinE: number | null;
-    @ViewColumn()
-    cSCloser: string | null;
-    @ViewColumn()
-    pjf: string;
-    @ViewColumn()
-    period: string | null;
-    @ViewColumn()
-    cInvName: string | null;
-    @ViewColumn()
-    cInvStd: string | null;
-    @ViewColumn()
-    cInvCCode: string | null;
-    @ViewColumn()
-    hinshu: string;
-    @ViewColumn()
-    sounitprice: number | null;
-    @ViewColumn()
-    cCusAbbName: string | null;
-    @ViewColumn()
-    cs: string;
-    @ViewColumn()
-    cCusDepart: string | null;
-    @ViewColumn()
-    ltPlan: number | null;
+y:number | null;
+@ViewColumn()
+m:number | null;
+@ViewColumn()
+'品种':number | null;
+@ViewColumn()
+ordersdDate:Date | null;
+@ViewColumn()
+dPreMoDate:Date | null;
+@ViewColumn()
+dPreDate:Date | null;
+@ViewColumn()
+cinvcode:string | null;
+@ViewColumn()
+cinvaddcode:string | null;
+@ViewColumn()
+iQuantity:number | null;
+@ViewColumn()
+iNatUnitPrice:number | null;
+@ViewColumn()
+jinE:number | null;
+@ViewColumn()
+cSCloser:string | null;
+@ViewColumn()
+pjf:string;
+@ViewColumn()
+period:string | null;
+@ViewColumn()
+cInvName:string | null;
+@ViewColumn()
+cInvStd:string | null;
+@ViewColumn()
+cInvCCode:string | null;
+@ViewColumn()
+hinshu:string;
+@ViewColumn()
+sounitprice:number | null;
+@ViewColumn()
+cCusAbbName:string | null;
+@ViewColumn()
+cs:string;
+@ViewColumn()
+cCusDepart:string | null;
+@ViewColumn()
+ltPlan:number | null;
 }

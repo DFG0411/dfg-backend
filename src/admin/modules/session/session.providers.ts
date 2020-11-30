@@ -1,4 +1,4 @@
-import {Session} from '../entities/session.entity';
+import {Session} from '../../entities/session.entity';
 import { Connection, Repository } from 'typeorm';
 
 export const sessionProviders = [

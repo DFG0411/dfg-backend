@@ -19,7 +19,7 @@ import {ViewColumn,ViewEntity} from "typeorm";
             po.cVenName AS '供应商简称',
             po.cInvCode AS '存货编码' ,
 			--ar.cInvCode,
-			po.cInvStd AS '规格型号',
+			po.cInvStd AS '存货编码',
             po.cInvCCode AS '存货分类',
 			po.cInvName AS '存货名称',
 			po.iQuantity AS 采购数量,
@@ -51,74 +51,74 @@ import {ViewColumn,ViewEntity} from "typeorm";
 	 --AND po.requiredate_r<GETDATE()+11`})
 export  class DfgReportPoOpenNoup {
 
-    @ViewColumn()
-:string | null;
+@ViewColumn()
+'产品品种':string | null;
 @ViewColumn()
 y:number | null;
 @ViewColumn()
 m:number | null;
 @ViewColumn()
-:string | null;
+'管理号':string | null;
 @ViewColumn()
-:string | null;
+'客户':string | null;
 @ViewColumn()
-:string;
+'产品编码':string;
 @ViewColumn()
-:string | null;
+'产品规格':string | null;
 @ViewColumn()
-:string | null;
+'产品代码':string | null;
 @ViewColumn()
-:string | null;
+'请购单号':string | null;
 @ViewColumn()
-:string | null;
+'供应商编码':string | null;
 @ViewColumn()
-:string | null;
+'采购单号':string | null;
 @ViewColumn()
-:string;
+'供应商简称':string;
 @ViewColumn()
-:string;
+'存货编码':string;
 @ViewColumn()
-:string | null;
+'规格型号 ':string | null;
 @ViewColumn()
-:string | null;
+'存货分类':string | null;
 @ViewColumn()
-:string | null;
+'存货名称':string | null;
 @ViewColumn()
-:number | null;
+'采购数量':number | null;
 @ViewColumn()
-:number | null;
+'未到数量':number | null;
 @ViewColumn()
-:Date | null;
+'请购日':Date | null;
 @ViewColumn()
-:Date;
+'采购日':Date;
 @ViewColumn()
-:Date | null;
+'请购货期':Date | null;
 @ViewColumn()
-:Date | null;
+'采购货期':Date | null;
 @ViewColumn()
-:number | null;
+'采购拖期':number | null;
 @ViewColumn()
-:number | null;
+'销售拖期':number | null;
 @ViewColumn()
-:string;
+'类型':string;
 @ViewColumn()
-:number | null;
+'销售金额':number | null;
 @ViewColumn()
-:number | null;
+'未到销售金额':number | null;
 @ViewColumn()
-:string | null;
+'采购员':string | null;
 @ViewColumn()
-:string | null;
+'请购人':string | null;
 @ViewColumn()
-:Date;
+'最近更新日':Date;
 @ViewColumn()
-:string | null;
+'最终客户':string | null;
 @ViewColumn()
-:Date | null;
+'销售货期':Date | null;
 @ViewColumn()
-:Date | null;
+'回答货期':Date | null;
 @ViewColumn()
-:Date;
+'更新日':Date;
 @ViewColumn()
 id:number;
 }

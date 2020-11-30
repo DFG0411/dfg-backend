@@ -6,7 +6,7 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 // import { UserRoleCreateInputDto } from './dto/input/user-role-create.input.dto';
 // import { UserRoleDeleteInputDto } from './dto/input/user-role-delete.input.dto';
 import { UserRoleUpdateInputDto } from './dto/input/user-role-update.input.dto';
-import {UserRole} from '../entities/user-role.entity';
+import {UserRole} from '../../entities/user-role.entity';
 import { Repository,Like, SaveOptions, } from 'typeorm';
 import { BaseService } from 'src/base';
 import { UserRoleDto } from './dto/user-role.dto';

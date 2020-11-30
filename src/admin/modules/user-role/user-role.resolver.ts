@@ -11,7 +11,7 @@ import { UserRoleDeleteInputDto } from './dto/input/user-role-delete.input.dto';
 import { UserRoleUpdateInputDto } from './dto/input/user-role-update.input.dto';
 import { UserRoleDto } from './dto/user-role.dto';
 import { UserRoleService } from './user-role.service';
-import { UserRole } from '../entities/user-role.entity';
+import { UserRole } from '../../entities/user-role.entity';
 import { DeepPartial, DeleteResult } from 'typeorm';
 import { UserRoleCreateInputDto } from './dto/input/user-role-create.input.dto';
 
