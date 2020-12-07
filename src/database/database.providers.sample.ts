@@ -3,7 +3,7 @@ import { createConnection, Connection } from 'typeorm';
 import { databaseConfig } from '../common/config/databaseConfig';
 import { IDatabaseConfig } from '../common/config/interfaces/IDatabase';
 
-import { SqlClient } from 'msnodesqlv8';
+// import { SqlClient } from 'msnodesqlv8';
 import sqlDriver from 'msnodesqlv8';
 
 export const databaseProviders = [
