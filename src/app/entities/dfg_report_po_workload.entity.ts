@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT  
@@ -35,7 +35,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
 --            --CAST(MONTH(po.dPODate) AS NVARCHAR(2)) ,
 -- 			po.cMaker`,
 })
-export class DfgReportPoWorkload {
+export class DfgReportPoWorkload extends BaseEntity{
   @ViewColumn()
   cVenName: string | null;
   @ViewColumn()

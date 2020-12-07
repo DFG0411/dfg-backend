@@ -1,5 +1,5 @@
 
-import {ViewColumn,ViewEntity} from "typeorm";
+import {ViewColumn,ViewEntity, BaseEntity} from "typeorm";
 
 
 
@@ -46,7 +46,7 @@ import {ViewColumn,ViewEntity} from "typeorm";
   LEFT JOIN dfg_pb_avgpricce AS ap ON ap.cinvcode=po.cInvCode AND pm.cVenCode=ap.cvencode AND pm.cexch_name=ap.cexch_name
   WHERE ISNULL(po.cbCloser,'asuser')='asuser'
   and YEAR(GETDATE())-YEAR(pm.dPODate)<3`})
-export  class DfgReportPoPricecompare {
+export  class DfgReportPoPricecompare extends BaseEntity{
 
 @ViewColumn()
 id:number;

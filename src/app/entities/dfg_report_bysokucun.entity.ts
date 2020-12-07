@@ -1,6 +1,6 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
-@ViewEntity({
+@ViewEntity({name:'Dfg_report_BySoKuCun',
   expression: `SELECT  sm.cCusCode ,
         c.cCusName ,
 		c.cCusAbbName,
@@ -49,7 +49,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
         ISNULL(st9001.qty,0) AS QtyKH ,
         ISNULL(invoice.qty,0) AS QtyYK ,`,
 })
-export class DfgReportBySoKuCun {
+export class DfgReportBySoKuCun extends BaseEntity{
   @ViewColumn()
   cCusCode: string | null;
   @ViewColumn()
