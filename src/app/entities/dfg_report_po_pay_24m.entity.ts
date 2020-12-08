@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT  vt.ctypename ,
@@ -25,7 +25,7 @@ WHERE DATEDIFF( MONTH,dVouchDate,GETDATE())<=24
 --AND ctypename='收款单'
 --AND YEAR(cp.dVouchDate)=2019 AND MONTH(cp.dVouchDate)=3`,
 })
-export class DfgReportPoPay_24m {
+export class DfgReportPoPay_24m extends BaseEntity {
   @ViewColumn()
   ctypename: string | null;
   @ViewColumn()

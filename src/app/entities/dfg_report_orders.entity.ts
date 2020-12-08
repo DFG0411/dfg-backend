@@ -1,5 +1,5 @@
 
-import {ViewColumn,ViewEntity} from "typeorm";
+import {ViewColumn,ViewEntity, BaseEntity} from "typeorm";
 
 
 
@@ -60,7 +60,7 @@ import {ViewColumn,ViewEntity} from "typeorm";
 	----GROUP BY c.cCusAbbName
 
 	----ORDER BY ddate DESC,sd.iQuantity*iNatUnitPrice DESC`})
-export  class DfgReportOrders {
+export  class DfgReportOrders extends BaseEntity {
 
     @ViewColumn()
 y:number | null;
@@ -107,5 +107,5 @@ cs:string;
 @ViewColumn()
 cCusDepart:string | null;
 @ViewColumn()
-ltPlan:number | null;
+lt_Plan:number | null;
 }
