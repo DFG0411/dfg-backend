@@ -23,9 +23,9 @@ import { CityModule } from './admin/modules/city/city.module';
 import { DatajsonModule } from './app/modules/datajson/datajson.module';
 
 import { DfgReportZzzhModule } from './app/modules/RptZzzh/dfg-report-zzzh.module';
-import { DfgReportZhModule } from './app/modules/dfg-report-zh/dfg-report-zh.module'
+import { DfgReportZhModule } from './app/modules/RPTzh/dfg-report-zh.module'
 import { from } from 'rxjs';
-import{DfgReportUninvoicedModule}from './app/modules/dfg-report-uninvoiced/dfg-report-uninvoiced.module'
+import{DfgReportUninvoicedModule}from './app/modules/UninVoiced/dfg-report-uninvoiced.module'
 // import { DatajsonService } from './app/datajson/datajson.service';
 import{DfgReportTyuzanModule}from './app/modules/Tyuzan/dfg-report-tyuzan.module'
 import{DfgReportSoReceiveModule}from './app/modules/SoReceive/dfg-report-so-receive.module'
