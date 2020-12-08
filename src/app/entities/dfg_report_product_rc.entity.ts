@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT  CAST(iYear AS NVARCHAR(4)) + RIGHT('00'
@@ -71,7 +71,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
 		AND ia.cVouType<>'33'
 		AND DATEDIFF(MONTH,ia.dKeepDate,GETDATE())<13`,
 })
-export class DfgReportProductRc {
+export class DfgReportProductRc extends BaseEntity{
   @ViewColumn()
   period: string | null;
   @ViewColumn()

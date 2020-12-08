@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT  pd.ID ,
@@ -69,7 +69,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
 	AND pm.dPODate>'2016-12-31'
 	--AND YEAR(pm.dPODate)=2019 AND MONTH(pm.dPODate)=3`,
 })
-export class DfgReportPo {
+export class DfgReportPo extends BaseEntity{
   @ViewColumn()
   id: number;
   @ViewColumn()
@@ -101,13 +101,13 @@ export class DfgReportPo {
   @ViewColumn()
   cModifyDate: Date | null;
   @ViewColumn()
-  requiredateA: Date | null;
+  requiredate_A: Date | null;
   @ViewColumn()
-  requiredateR: Date | null;
+  requiredate_R: Date | null;
   @ViewColumn()
-  ltDd: number | null;
+  lt_Dd: number | null;
   @ViewColumn()
-  ltPlan: number | null;
+  lt_Plan: number | null;
   @ViewColumn()
   type: string;
   @ViewColumn()

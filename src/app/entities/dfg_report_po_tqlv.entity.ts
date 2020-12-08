@@ -1,5 +1,5 @@
 
-import {ViewColumn,ViewEntity} from "typeorm";
+import {ViewColumn,ViewEntity, BaseEntity} from "typeorm";
 
 
 
@@ -30,7 +30,7 @@ import {ViewColumn,ViewEntity} from "typeorm";
 
 	 ORDER BY YEAR(po.dPODate)
 	 --,MONTH(po.dPODate),po.cVenCode`})
-export  class DfgReportPoTqlv {
+export  class DfgReportPoTqlv extends BaseEntity{
 
     @ViewColumn()
 	'采购日期':number | null;
@@ -39,9 +39,9 @@ export  class DfgReportPoTqlv {
 @ViewColumn()
 '供应商简称':string;
 @ViewColumn()
+'采购拖期':number | null;
+@ViewColumn()
 '采购件数':number | null;
 @ViewColumn()
-cVenCode:number | null;
-@ViewColumn()
-cVenName:number | null;
+'拖期率':number | null;
 }

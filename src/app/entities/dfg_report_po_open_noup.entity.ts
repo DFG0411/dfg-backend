@@ -1,5 +1,5 @@
 
-import {ViewColumn,ViewEntity} from "typeorm";
+import {ViewColumn,ViewEntity, BaseEntity} from "typeorm";
 
 
 
@@ -49,7 +49,7 @@ import {ViewColumn,ViewEntity} from "typeorm";
 	 AND po.paCloser IS NULL
 	 AND po.cbCloser IS NULL
 	 --AND po.requiredate_r<GETDATE()+11`})
-export  class DfgReportPoOpenNoup {
+export  class DfgReportPoOpenNoup extends BaseEntity{
 
 @ViewColumn()
 '产品品种':string | null;

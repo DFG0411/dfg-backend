@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT  distinct
@@ -11,7 +11,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
  			po.cMaker
     FROM    dbo.dfg_report_po AS po`,
 })
-export class DfgReportPoWorkloadH {
+export class DfgReportPoWorkloadH extends BaseEntity{
   @ViewColumn()
   cVenName: string | null;
   @ViewColumn()
