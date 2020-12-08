@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { BaseEntity, ViewColumn, ViewEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT --TOP 1 
@@ -61,7 +61,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
     WHERE   sb.iDLsID IS  NOT NULL
 	--AND ISNULL(stk.rdateDl,ISNULL(stk.rdateBsc,ISNULL(stk.ZRdate,ISNULL(stk.rdateKh,NULL)))) IS NULL`,
 })
-export class DfgReportSales {
+export class DfgReportSales extends BaseEntity{
   @ViewColumn()
   cCusCode: string | null;
   @ViewColumn()
@@ -113,13 +113,13 @@ export class DfgReportSales {
   @ViewColumn()
   ckdate: Date | null;
   @ViewColumn()
-  ltPlan: number | null;
+  lt_Plan: number | null;
   @ViewColumn()
-  ltRk: number | null;
+  lt_Rk: number | null;
   @ViewColumn()
-  ltRc: number | null;
+  lt_Rc: number | null;
   @ViewColumn()
-  ltCp: number | null;
+  lt_Cp: number | null;
   @ViewColumn()
   cDefine34: number | null;
 }
