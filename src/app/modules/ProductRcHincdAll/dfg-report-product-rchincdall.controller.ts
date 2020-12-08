@@ -6,7 +6,7 @@ import{DfgReportProductRcHincdAll} from 'src/app/entities/dfg_report_product_rch
 import{DfgReportProductRchincdallService}from './dfg-report-product-rchincdall.service'
 @ApiTags('dfg-report-product-rchincdall')
 @Controller('dfg-report-product-rchincdall')
-export class DfgReportProductRchincdallController extends BaseController<DfgReportProductRcHincdAll> {
+export class ProductrcHincdAll extends BaseController<DfgReportProductRcHincdAll> {
     constructor (protected service:DfgReportProductRchincdallService) {
         super();
      }  
