@@ -1,6 +1,6 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { BaseEntity, ViewColumn, ViewEntity } from "typeorm";
 
-@ViewEntity({
+@ViewEntity({name:'dfg_report_product_rchincd',
   expression: `SELECT  iyear,CAST(iYear AS NVARCHAR(4)) + RIGHT('00'
                                                + CAST(iMonth AS NVARCHAR(2)),
                                                2) AS period ,
@@ -46,7 +46,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
                                                2) 
            , cinvccodeX`,
 })
-export class DfgReportProductRcHincd {
+export class DfgReportProductRcHincd extends BaseEntity{
   @ViewColumn()
   iyear: number | null;
   @ViewColumn()

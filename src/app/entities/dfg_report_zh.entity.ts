@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { BaseEntity, ViewColumn, ViewEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT iNatMoney ,
@@ -14,7 +14,7 @@ LEFT JOIN dbo.Inventory AS ven ON ven.cInvCode = so.cInvCode
 LEFT JOIN dbo.Customer AS cus ON cus.cCusCode = sm.cCusCode
 WHERE sm.dDate>'2016-12-31'`,
 })
-export class DfgReportZh {
+export class DfgReportZh extends BaseEntity {
   @ViewColumn()
   iNatMoney: number | null;
   @ViewColumn()
