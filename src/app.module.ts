@@ -21,6 +21,19 @@ import { CityModule } from './admin/modules/city/city.module';
 // import { JwtModule } from '@nestjs/jwt';
 // import { JwtStrategy } from './admin/auth/passport/jwt.strategy';
 import { DatajsonModule } from './app/modules/datajson/datajson.module';
+
+import { DfgReportZzzhModule } from './app/modules/dfg-report-zzzh/dfg-report-zzzh.module';
+import { DfgReportZhModule } from './app/modules/dfg-report-zh/dfg-report-zh.module'
+import { from } from 'rxjs';
+import{DfgReportUninvoicedModule}from './app/modules/dfg-report-uninvoiced/dfg-report-uninvoiced.module'
+// import { DatajsonService } from './app/datajson/datajson.service';
+import{DfgReportTyuzanModule}from './app/modules/dfg-report-tyuzan/dfg-report-tyuzan.module'
+import{DfgReportSoReceiveModule}from './app/modules/dfg-report-so-receive/dfg-report-so-receive.module'
+import{DfgReportSaleszmModule}from './app/modules/dfg-report-saleszm/dfg-report-saleszm.module'
+import{DfgReportSalesModule}from './app/modules/dfg-report-sales/dfg-report-sales.module'
+import{DfgReportProductRchincdallModule}from './app/modules/dfg-report-product-rchincdall/dfg-report-product-rchincdall.module'
+import{DfgReportProductRchincdModule}from './app/modules/dfg-report-product-rchincd/dfg-report-product-rchincd.module'
+
 import { DfgReportOrdersModule } from './app/modules/dfg-report-orders/dfg-report-orders.module';
 import { DfgReportChukuwkModule } from './app/modules/dfg-report-chukuwk/dfg-report-chukuwk.module';
 import { DfgReportBysokucunModule } from './app/modules/dfg-report-bysokucun/dfg-report-bysokucun.module';
@@ -72,6 +85,19 @@ import { DfgReportProductRcModule } from './app/modules/dfg-report-product-rc/df
     //   installSubscriptionHandlers: true,
     // }),
     DatajsonModule,
+
+    DfgReportZzzhModule,
+    DfgReportZhModule,
+    DfgReportUninvoicedModule,
+    DfgReportTyuzanModule,
+    DfgReportSoReceiveModule,
+    DfgReportSaleszmModule,
+    DfgReportSalesModule,
+    DfgReportProductRchincdallModule,
+    DfgReportProductRchincdModule,
+
+
+
     DfgReportOrdersModule,
     DfgReportChukuwkModule,
     DfgReportBysokucunModule,
@@ -91,6 +117,7 @@ import { DfgReportProductRcModule } from './app/modules/dfg-report-product-rc/df
     DfgReportPoWorkloadHModule,
     DfgReportPoWorkloadVModule,
     DfgReportProductRcModule
+
   ],
   controllers: [AppController],
   providers: [ AppService],

@@ -1,6 +1,6 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { BaseEntity, ViewColumn, ViewEntity } from "typeorm";
 
-@ViewEntity({
+@ViewEntity({name:'dfg_report_product_rchincdall',
   expression: `SELECT  iyear,period=CASE WHEN LEFT(period,4)=2017 THEN '201700'
 				WHEN  LEFT(period,4)=2018 THEN '201800'
 				ELSE period
@@ -65,7 +65,7 @@ GROUP BY iYear,CASE WHEN LEFT(period,4)=2017 THEN '201700'
 				ELSE period
 				END`,
 })
-export class DfgReportProductRcHincdAll {
+export class DfgReportProductRcHincdAll extends BaseEntity{
   @ViewColumn()
   iyear: number | null;
   @ViewColumn()

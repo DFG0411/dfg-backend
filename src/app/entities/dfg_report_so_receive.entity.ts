@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { BaseEntity, ViewColumn, ViewEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT  
@@ -32,7 +32,7 @@ AND cp.cVouchType='48'  --收款单
 --                                               + CAST(MONTH(cp.dVouchDate ) AS NVARCHAR(2)),
 --                                               2))`,
 })
-export class DfgReportSoReceive {
+export class DfgReportSoReceive extends BaseEntity{
   @ViewColumn()
   cVouchType: string;
   @ViewColumn()
@@ -40,7 +40,7 @@ export class DfgReportSoReceive {
   @ViewColumn()
   period: string | null;
   @ViewColumn()
-  ltDd: number | null;
+  lt_Dd: number | null;
   @ViewColumn()
   y: number | null;
   @ViewColumn()
