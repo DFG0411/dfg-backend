@@ -1,9 +1,10 @@
 
-import {ViewColumn,ViewEntity} from "typeorm";
+import {ViewColumn,ViewEntity, BaseEntity} from "typeorm";
 
 
 
-@ViewEntity({expression:`SELECT   TOP 1000
+@ViewEntity({name:'dfg_report_po_tqlvz',
+	expression:`SELECT   TOP 1000
  --po.ID ,
 	--po.cbCloser,
  --           po.cCode  AS '请购单号',
@@ -41,7 +42,7 @@ import {ViewColumn,ViewEntity} from "typeorm";
 	 --AND po.requiredate_r<GETDATE()+11
 
 	 ORDER BY YEAR(po.dPODate)`})
-export  class DfgReportPoTqlvZ {
+export  class DfgReportPoTqlvZ extends BaseEntity {
 
 	@ViewColumn()
 '采购日期'	:Date|null;

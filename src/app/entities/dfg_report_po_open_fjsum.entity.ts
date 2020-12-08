@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT TOP 100 PERCENT CONVERT(NCHAR(6),pa.dRequirDate,112) AS Period,SUM((pd.iQuantity-ISNULL(pd.iArrQTY,0))*pd.iUnitPrice) AS jpy,SUM((pd.iQuantity-ISNULL(pd.iArrQTY,0))*pd.iNatUnitPrice) AS rmb FROM dbo.PO_Podetails  AS pd JOIN dbo.PO_Pomain AS pm ON pm.POID = pd.POID
@@ -12,7 +12,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
 	GROUP BY CONVERT(NCHAR(6),pa.dRequirDate,112)
 	ORDER BY CONVERT(NCHAR(6),pa.dRequirDate,112)`,
 })
-export class DfgReportPoOpenFjsum {
+export class DfgReportPoOpenFjsum extends BaseEntity {
   @ViewColumn()
   period: string | null;
   @ViewColumn()

@@ -1,6 +1,6 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
-@ViewEntity({
+@ViewEntity({name:'dfg_report_po_24m',
   expression: `SELECT  pd.ID ,
             pam.cCode ,
             pm.cVenCode ,
@@ -64,7 +64,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
 	AND DATEDIFF( MONTH,pm.dPODate,GETDATE())<=24
 	--AND YEAR(pm.dPODate)=2019 AND MONTH(pm.dPODate)=3`,
 })
-export class DfgReportPo_24m {
+export class DfgReportPo_24m extends BaseEntity{
   @ViewColumn()
   id: number;
   @ViewColumn()
@@ -96,13 +96,13 @@ export class DfgReportPo_24m {
   @ViewColumn()
   cModifyDate: Date | null;
   @ViewColumn()
-  requiredateA: Date | null;
+  requiredate_A: Date | null;
   @ViewColumn()
-  requiredateR: Date | null;
+  requiredate_R: Date | null;
   @ViewColumn()
-  ltDd: number | null;
+  lt_Dd: number | null;
   @ViewColumn()
-  ltPlan: number | null;
+  lt_Plan: number | null;
   @ViewColumn()
   type: string;
   @ViewColumn()

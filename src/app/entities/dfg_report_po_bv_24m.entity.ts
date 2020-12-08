@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { ViewColumn, ViewEntity, BaseEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT  pb.ID ,
@@ -48,7 +48,7 @@ AND LEFT(i.cInvCCode,1)<>'Z'
 AND DATEDIFF( MONTH,pbm.dPBVDate,GETDATE())<=24
 --AND DATEDIFF(MONTH,pbm.dPBVDate,GETDATE())<3`,
 })
-export class DfgReportPoBv_24m {
+export class DfgReportPoBv_24m extends BaseEntity {
   @ViewColumn()
   id: number;
   @ViewColumn()

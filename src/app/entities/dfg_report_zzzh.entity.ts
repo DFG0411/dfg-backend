@@ -1,4 +1,4 @@
-import { ViewColumn, ViewEntity } from "typeorm";
+import { BaseEntity, ViewColumn, ViewEntity } from "typeorm";
 
 @ViewEntity({
   expression: `SELECT rc.iyear,rc.period,rc.cinvccodeX,
@@ -6,7 +6,7 @@ import { ViewColumn, ViewEntity } from "typeorm";
 cz,ISNULL(amnt,0) AS amnt,(ISNULL(amnt,0)/cz) AS LV
 FROM dfg_report_product_rcHincdAll rc LEFT JOIN dfg_toolfeeSuperset fee ON rc.iyear=fee.iyear AND  rc.period=fee.period and rc.cinvccodeX=fee.itemcode`,
 })
-export class DfgReportZzzh {
+export class DfgReportZzzh extends BaseEntity{
   @ViewColumn()
   iyear: number | null;
   @ViewColumn()
