@@ -1,6 +1,6 @@
 import { BaseEntity, ViewColumn, ViewEntity } from "typeorm";
 
-@ViewEntity({
+@ViewEntity({name:'dfg_report_zzzh',
   expression: `SELECT rc.iyear,rc.period,rc.cinvccodeX,
 --CASE WHEN cz=0 THEN 0.00001 ELSE cz END AS 
 cz,ISNULL(amnt,0) AS amnt,(ISNULL(amnt,0)/cz) AS LV
