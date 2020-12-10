@@ -22,37 +22,37 @@ import { CityModule } from './admin/modules/city/city.module';
 // import { JwtStrategy } from './admin/auth/passport/jwt.strategy';
 import { DatajsonModule } from './app/modules/datajson/datajson.module';
 
-import { DfgReportZzzhModule } from './app/modules/RptZzzh/dfg-report-zzzh.module';
-import { DfgReportZhModule } from './app/modules/RPTzh/dfg-report-zh.module'
+import { RptZzzhModule } from './app/modules/RptZzzh/RptZzzh.module';
+import { RptZhModule } from './app/modules/RptZh/RptZh.module'
 import { from } from 'rxjs';
-import{DfgReportUninvoicedModule}from './app/modules/UninVoiced/dfg-report-uninvoiced.module'
+import{UninvoicedModule}from './app/modules/Uninvoiced/Uninvoiced.module'
 // import { DatajsonService } from './app/datajson/datajson.service';
-import{DfgReportTyuzanModule}from './app/modules/Tyuzan/dfg-report-tyuzan.module'
-import{DfgReportSoReceiveModule}from './app/modules/SoReceive/dfg-report-so-receive.module'
-import{DfgReportSaleszmModule}from './app/modules/Saleszm/dfg-report-saleszm.module'
-import{DfgReportSalesModule}from './app/modules/Sales/dfg-report-sales.module'
-import{ProductRcHincdAllModule}from './app/modules/ProductRcHincdAll/ProductRcHincdAll.module'
-import{ProductRcHincdModule}from './app/modules/ProductRcHincd/ProductRcHincd.module'
+import{TyuzanModule}from './app/modules/Tyuzan/Tyuzan.module'
+import{SoReceiveModule}from './app/modules/SoReceive/SoReceive.module'
+import{SalesZmModule}from './app/modules/SalesZm/SalesZm.module'
+import{SalesModule}from './app/modules/Sales/Sales.module'
+import{DfgReportProductRchincdallModule}from './app/modules/ProductRcHincdAll/dfg-report-product-rchincdall.module'
+import{DfgReportProductRchincdModule}from './app/modules/ProductRcHincd/dfg-report-product-rchincd.module'
 
-import { OrdersModule } from './app/modules/Orders/Orders.module';
-import { ChukuwkModule } from './app/modules/ChukuWk/ChukuWk.module';
-import { RptBysoKucunModule } from './app/modules/RptBysoKucun/RptBysoKucun.module';
-import { Po24mModule } from './app/modules/Po24m/Po24m.module';
-import { DfgReportPoModule } from './app/modules/RptPo/dfg-report-po.module';
-import { PoBvModule } from './app/modules/Pobv/PoBv.module';
-import { PoBv24mModule } from './app/modules/PoBv24m/PoBv24m.module';
-import { PoOpenModule } from './app/modules/PoOpen/PoOpen.module';
-import { PoOpenFjsumModule } from './app/modules/PoOpenFjsum/PoOpenFjsum.module';
-import { PoOpenNoupModule } from './app/modules/PoOpenNoup/PoOpenNoup.module';
-import { PoPayModule } from './app/modules/PoPay/PoPay.module';
-import { PoPay24mModule } from './app/modules/PoPay24m/PoPay24m.module';
-import { PoPriceCompareModule } from './app/modules/PoPriceCompare/PoPriceCompare.module';
-import { PoTqlvModule } from './app/modules/PoTqlv/PoTqlv.module';
-import { PoTqlvZModule } from './app/modules/PoTqlvz/PoTqlvZ.module';
-import { PoWorkloadModule } from './app/modules/PoWorkLoad/PoWorkload.module';
-import { PoWorkloadHModule } from './app/modules/PoWorkLoadh/PoWorkloadH.module';
-import { PoWorkloadVModule } from './app/modules/PoWorkLoadv/PoWorkloadV.module';
-import { ProductRcModule } from './app/modules/ProductRc/ProductRc.module';
+import { DfgReportOrdersModule } from './app/modules/Orders/dfg-report-orders.module';
+import { DfgReportChukuwkModule } from './app/modules/ChukuWk/dfg-report-chukuwk.module';
+import { DfgReportBysokucunModule } from './app/modules/RptBysoKucun/dfg-report-bysokucun.module';
+import { DfgReportPo24mModule } from './app/modules/Po24m/dfg-report-po-24m.module';
+import { RptPoModule } from './app/modules/RptPo/RptPo.module';
+import { DfgReportPoBvModule } from './app/modules/Pobv/dfg-report-po-bv.module';
+import { DfgReportPoBv24mModule } from './app/modules/PoBv24m/dfg-report-po-bv-24m.module';
+import { DfgReportPoOpenModule } from './app/modules/PoOpen/dfg-report-po-open.module';
+import { DfgReportPoOpenFjsumModule } from './app/modules/PoOpenFjsum/dfg-report-po-open-fjsum.module';
+import { DfgReportPoOpenNoupModule } from './app/modules/PoOpenNoup/dfg-report-po-open-noup.module';
+import { DfgReportPoPayModule } from './app/modules/PoPay/dfg-report-po-pay.module';
+import { DfgReportPoPay24mModule } from './app/modules/PoPay24m/dfg-report-po-pay-24m.module';
+import { DfgReportPoPricecompareModule } from './app/modules/PoPriceCompare/dfg-report-po-pricecompare.module';
+import { DfgReportPoTqlvModule } from './app/modules/PoTqlv/dfg-report-po-tqlv.module';
+import { DfgReportPoTqlvzModule } from './app/modules/PoTqlvz/dfg-report-po-tqlvz.module';
+import { DfgReportPoWorkloadModule } from './app/modules/PoWorkLoad/dfg-report-po-workload.module';
+import { DfgReportPoWorkloadHModule } from './app/modules/PoWorkLoadh/dfg-report-po-workload-h.module';
+import { DfgReportPoWorkloadVModule } from './app/modules/PoWorkLoadv/dfg-report-po-workload-v.module';
+import { DfgReportProductRcModule } from './app/modules/ProductRc/dfg-report-product-rc.module';
 
 // import { DatajsonService } from './app/datajson/datajson.service';
 
@@ -86,37 +86,37 @@ import { ProductRcModule } from './app/modules/ProductRc/ProductRc.module';
     // }),
     DatajsonModule,
 
-    DfgReportZzzhModule,
-    DfgReportZhModule,
-    DfgReportUninvoicedModule,
-    DfgReportTyuzanModule,
-    DfgReportSoReceiveModule,
-    DfgReportSaleszmModule,
-    DfgReportSalesModule,
-    ProductRcHincdAllModule,
-    ProductRcHincdModule,
+    RptZzzhModule,
+    RptZhModule,
+    UninvoicedModule,
+    TyuzanModule,
+    SoReceiveModule,
+    SalesZmModule,
+    SalesModule,
+    DfgReportProductRchincdallModule,
+    DfgReportProductRchincdModule,
 
 
 
-    OrdersModule,
-    ChukuwkModule,
-    RptBysoKucunModule,
-    Po24mModule,
-    DfgReportPoModule,
-    PoBvModule,
-    PoBv24mModule,
-    PoOpenModule,
-    PoOpenFjsumModule,
-    PoOpenNoupModule,
-    PoPayModule,
-    PoPay24mModule,
-    PoPriceCompareModule,
-    PoTqlvModule,
-    PoTqlvZModule,
-    PoWorkloadModule,
-    PoWorkloadHModule,
-    PoWorkloadVModule,
-    ProductRcModule
+    DfgReportOrdersModule,
+    DfgReportChukuwkModule,
+    DfgReportBysokucunModule,
+    DfgReportPo24mModule,
+    RptPoModule,
+    DfgReportPoBvModule,
+    DfgReportPoBv24mModule,
+    DfgReportPoOpenModule,
+    DfgReportPoOpenFjsumModule,
+    DfgReportPoOpenNoupModule,
+    DfgReportPoPayModule,
+    DfgReportPoPay24mModule,
+    DfgReportPoPricecompareModule,
+    DfgReportPoTqlvModule,
+    DfgReportPoTqlvzModule,
+    DfgReportPoWorkloadModule,
+    DfgReportPoWorkloadHModule,
+    DfgReportPoWorkloadVModule,
+    DfgReportProductRcModule
 
   ],
   controllers: [AppController],
